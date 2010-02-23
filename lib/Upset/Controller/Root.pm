@@ -1,43 +1,17 @@
 package Upset::Controller::Root;
 use Moose;
+use Try::Tiny;
 use namespace::autoclean;
 
 BEGIN { extends 'Catalyst::Controller' }
 
-#
-# Sets the actions in this controller to be registered with no prefix
-# so they function identically to actions created in MyApp.pm
-#
 __PACKAGE__->config(namespace => '');
-
-=head1 NAME
-
-Upset::Controller::Root - Root Controller for Upset
-
-=head1 DESCRIPTION
-
-[enter your description here]
-
-=head1 METHODS
-
-=head2 index
-
-The root page (/)
-
-=cut
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    # Hello World
-    $c->response->body( $c->welcome_message );
+    $c->response->body( ref $c->user );
 }
-
-=head2 default
-
-Standard 404 error page
-
-=cut
 
 sub default :Path {
     my ( $self, $c ) = @_;
@@ -45,24 +19,47 @@ sub default :Path {
     $c->response->status(404);
 }
 
-=head2 end
+sub access_denied :Private {
+    my ( $self, $c, $action ) = @_;
+    $c->forward('/login');
+}
 
-Attempt to render a view, if needed.
+sub login :Local {
+    my ( $self, $c ) = @_;
 
-=cut
+    # eval necessary because LWPx::ParanoidAgent
+    # croaks if invalid URL is specified
+    $c->stash->{template} = 'login.tt';
+    #try {
+        # Authenticate against OpenID to get user URL
+        if ( $c->authenticate( {}, 'openid' ) ) {
+            $c->flash->{'status_msg'} = 'OpenID login was successful.';
+
+            # Create basic user entry unless already found
+            # (or use auto_create_user: 1)
+            unless ( $c->model('DB::User')->find( { url => $c->user->url } ) ) {
+                $c->model('DB::User')->create( { url => $c->user->url } );
+            }
+
+            # Re-authenticate against local DBIC store
+            if ( $c->authenticate( { url => $c->user->url }, 'dbic' ) ) {
+                $c->log->debug("local login succeeded");
+                $c->flash->{'status_msg'} = 'Login was successful.';
+                $c->response->redirect( $c->uri_for("/") );
+                $c->detach();
+            }
+            else {
+                $c->log->error("local login failed for ${\$c->user->url}");
+                $c->flash->{'error_msg'} = 'Local login failed.';
+            }
+        }
+    #} catch { 
+    #    $c->log->error( "Failure during login: " . $_ );
+    #    $c->flash->{'error_msg'} = 'Failure during login: ' . $_;
+    #};
+}
 
 sub end : ActionClass('RenderView') {}
-
-=head1 AUTHOR
-
-Dylan William Hardison,,,
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
 
 __PACKAGE__->meta->make_immutable;
 

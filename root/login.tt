@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="author" content="Dylan William Hardison" />
+        <title>Upset - Login</title>
+    </head>
+    <body>
+        [% IF error_msg %]
+        <p>[% error_msg %]</p>
+        [% END %]
+        <form action="[% c.uri_for('/login') %]" method="get" name="openid">
+            <input type="text" name="openid_identifier" class="openid" />
+            <input type="submit" value="Sign in with OpenID" />
+        </form>
+    </body>
+</html>
