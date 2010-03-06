@@ -21,6 +21,7 @@ use Catalyst qw/
     Session::State::Cookie
     Authentication
     Authorization::Roles
+    Authorization::ACL
 /;
 
 extends 'Catalyst';
@@ -36,5 +37,14 @@ Upset->config(
 );
 
 Upset->setup();
+
+Upset->deny_access_unless( "/",      "user_exists" );
+#Upset->deny_access_unless( "/admin", ['admin'] );
+
+Upset->allow_access( "/login" );
+Upset->allow_access( "/logout" );
+Upset->allow_access( "/end" );
+
+
 
 1;

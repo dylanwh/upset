@@ -1,0 +1,247 @@
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 0.75em;
+  color: #FFFFFF;
+  background-color: #000000;  
+}
+
+acronym {
+  cursor: help;
+  border-bottom: 1px solid #006DA6;
+}
+
+/* -- Layout classes -- */
+
+#mainContainer {
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -- Content container -- */
+
+#content {
+  float: right;
+  width: 550px;
+  margin-right: 10px;
+}
+
+#content p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 8px;
+  background-color: #555555;
+}
+
+#content a {
+  text-decoration: none;
+  border-bottom: 1px solid #DEFF00;
+  color: #FFFFFF;  
+}
+
+#content a:hover {  
+  border-bottom: 1px solid #DEFF00;
+  color: #DEFF00;
+}
+
+#content a img {
+  border: 0px;
+}
+
+#content h1, #sidebar h1{
+  clear: both;  
+  font-size: 1.0em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-indent: 10px;
+  margin: 0px;
+  border-top: 10px solid #000000;
+  border-bottom: 10px solid #333333;  
+  color: #DEFF00;
+  background-color: #006DA6;
+}
+
+/* -- Content header and footer -- */
+
+#header {
+  display: table-cell;  
+  height: 100px;
+  width: 550px;
+  text-align: right;
+  vertical-align: bottom;
+  margin-bottom: 0px;
+  background: url(../images/relaxed_hdr.gif) no-repeat top left;  
+}
+
+#footer {
+  float: left;
+  height: 75px;
+  width: 550px;  
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-align: center;  
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  background: #333333 url(../images/round_corner.gif) no-repeat bottom right;  
+}
+
+#footer a {
+  border: 0px;
+  color: #DEFF00;  
+}
+
+#footer a:hover {
+  border: 0px;
+  color: #AAAAAA;  
+}
+
+/* -- Menu & news container -- */
+
+#sidebar {
+  display: none;
+}
+
+#sidebar p {    
+  margin: 0px;
+  padding: 5px 5px 10px 5px;
+  background-color: #555555;
+}
+
+#sidebar a {  
+  text-decoration: none;
+  border-bottom: 1px solid #DEFF00;
+  color: #FFFFFF;
+}
+
+#sidebar a:hover {
+  color: #DEFF00;
+}
+
+#sidebar a img {  
+  vertical-align:middle;
+  padding: 0 5px 0 5px;
+  border: 0px;
+}
+
+#sidebar a.menuItem {
+  display: block;
+  clear: both;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 1px;
+  padding: 0 0 0 25px;
+  border: 0px;
+  color: #FFFFFF;
+  background: #006DA6 url(../images/relaxed_icn_menu.gif) no-repeat center left;
+}
+
+#sidebar a:hover.menuItem {
+  color: #DEFF00;
+  background: #00517C url(../images/relaxed_icn_menu_on.gif) no-repeat center left;
+}
+
+#sidebarHeader {
+  display: none;
+}
+
+#sidebarFooter {  
+  display: none;
+}
+
+/* -- Title and sub-headings -- */
+
+.highlight {
+  color: #DEFF00;
+}
+
+/* -- IE CSS2 selector hack.  This still validates, but IE ignores the class defined
+      with the [id].  The result is you set the IE specific value in the first class
+      definition, and the standard compliant browser value in the second class -- */
+
+#title {
+  font-size: 36px;
+  padding: 48px 4px 0px 0px;  
+  
+}
+
+#title[id] {
+  padding-top: 0px;
+  padding-bottom: 3px;
+}
+
+#title a{
+  display: block;  
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-top: -8px;
+  border: 0px;
+}
+
+#title a:hover{
+  color: #DEFF00;
+}
+
+strong, .subHeading {
+  font-size: 0.8em;
+  text-transform: uppercase;  
+  color: #DEFF00;  
+}
+
+.subHeading {
+  display: block;
+}
+
+/* -- Images styles -- */
+
+.imgRight, .imgLeft {
+  border: 1px solid #888888;
+}
+
+.imgRight {
+  float: right;
+  margin: 0 0 10px 10px;
+  
+}
+
+.imgLeft {
+  float: left;
+  margin: 0 10px 10px 0;  
+}
+
+/* -- Takes care of the 'jump to top' arrow -- */
+
+.upArrow {
+  clear: both;
+  display: block;
+  text-align: right;
+}
+
+.upArrow a img {  
+  margin-top: 10px;
+  border-bottom: 0px;
+  background-color: #DEFF00;
+}
+
+.upArrow a:hover img {  
+  border: 0px;
+  background-color: #BBBBBB;
+}
+
+/* -- Quote block styles -- */
+
+.quote {
+  display: block;
+  margin: 10px 20px 10px 20px;
+  padding: 2px;  
+  border: 1px solid #888888;
+  background-color: #666666;
+}
+
+.author {
+  display: block;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #DEFF00;
+}
+

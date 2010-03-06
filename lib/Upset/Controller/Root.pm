@@ -9,8 +9,6 @@ __PACKAGE__->config(namespace => '');
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-
-    $c->response->body( ref $c->user );
 }
 
 sub default :Path {
@@ -21,7 +19,9 @@ sub default :Path {
 
 sub access_denied :Private {
     my ( $self, $c, $action ) = @_;
-    $c->forward('/login');
+    $c->stash->{template} = 'access_denied.tt';
+
+    $c->forward('/login') unless $c->user_exists;
 }
 
 sub login :Local {
@@ -57,6 +57,11 @@ sub login :Local {
     #    $c->log->error( "Failure during login: " . $_ );
     #    $c->flash->{'error_msg'} = 'Failure during login: ' . $_;
     #};
+}
+
+sub logout :Local {
+    my ($self, $c) = @_;
+    $c->logout;
 }
 
 sub end : ActionClass('RenderView') {}

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+    <head>
+        [%#<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />%]
+        <title>[% title %]</title>
+
+        <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed.css" media="screen, tv, projection" />
+        <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed_print.css" media="print" />
+    </head>
+
+    <body>
+
+        <!-- Main layout container start -->
+        <div id="mainContainer">
+            <!-- Menu start -->
+            <div id="sidebar">
+
+                <!-- Menu header start -->
+                <div id="sidebarHeader">
+                    &nbsp;
+                </div>
+
+                <!-- Menu items -->
+                <h1>Actions</h1>
+
+                <a href="[% c.uri_for('/logout') %]" title="logout" class="menuItem">logout</a>
+
+                [% IF c.check_user_roles('admin') %]
+                <h1>Admin</h1>
+
+                <a href="clean.html" title="item" class="menuItem">menu item 1</a>
+                <a href="clean.html" title="item" class="menuItem">menu item 2</a>
+                <a href="clean.html" title="item" class="menuItem">menu item 3</a>
+                <a href="clean.html" title="item" class="menuItem">menu item 4</a>
+                [% END %]
+
+                <!-- News section -->
+                <h1>News</h1>
+
+                <p>
+                <span class="subHeading">2005.03.10</span>
+                News Item One
+                </p>
+
+                <p>
+                <span class="subHeading">2005.03.09</span>
+                News Item Two
+                </p>
+
+                <!-- Menu footer -->
+                <div id="sidebarFooter">
+                    &nbsp;
+                </div>
+
+            </div>
+            <!-- Menu end -->
+
+            <!-- Content start -->
+            <div id="content">
+
+                <!-- Content header -->
+                <div id="header">
+                    <a name="top"></a>
+                    <div id="title">
+                        <img src="/static/images/unix-people_logo.png" width="35" height="36" alt="logo"/><span class="highlight">unix</span>-people
+                        <a href="http://unix-people.org" title="unix people" style="border: 0px;">unix-people.org</a>
+                    </div>
+                </div>
+
+                <!-- Content blocks start -->
+                [% content %]
+
+                <!-- Content footer -->
+                <div id="footer">
+                    <div style="padding: 5px">&nbsp;</div>
+                    &copy; 2010 Dylan William Hardison<br/>
+                    design by: <a href="http://openwebdesign.org/userinfo.phtml?user=snop" title="OWD profile">snop</a> | <a href="http://fullahead.org" title="design portfolio">fullAhead.org</a>
+                </div>
+
+            </div>
+            <!-- Content end -->
+
+        </div>
+        <!-- Main layout container end -->
+    </body>
+</html>
