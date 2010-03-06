@@ -24,7 +24,8 @@
                 <!-- Menu items -->
                 <h1>Actions</h1>
 
-                <a href="[% c.uri_for('/logout') %]" title="logout" class="menuItem">logout</a>
+                <a href="[% c.uri_for('/calendar') %]" class="menuItem">calendar</a>
+                <a href="[% c.uri_for('/logout') %]" class="menuItem">logout</a>
 
                 [% IF c.check_user_roles('admin') %]
                 <h1>Admin</h1>

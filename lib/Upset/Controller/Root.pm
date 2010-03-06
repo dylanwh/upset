@@ -13,13 +13,13 @@ sub index :Path :Args(0) {
 
 sub default :Path {
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
+    $c->stash->{template} = 'not-found.tt';
     $c->response->status(404);
 }
 
 sub access_denied :Private {
     my ( $self, $c, $action ) = @_;
-    $c->stash->{template} = 'access_denied.tt';
+    $c->stash->{template} = 'access-denied.tt';
 
     $c->forward('/login') unless $c->user_exists;
 }

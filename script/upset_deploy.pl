@@ -9,7 +9,6 @@ my ($user, $password);
 my $schema = Upset::Schema->connect( $dsn, $user, $password, );
 
 if ( !$schema->get_db_version() ) {
-
     # schema is unversioned
     $schema->deploy();
 }
