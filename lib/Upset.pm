@@ -38,7 +38,7 @@ Upset->config(
 
 Upset->setup();
 
-Upset->deny_access_unless( '/api', "user_exists" );
+#Upset->deny_access_unless( '/api', "user_exists" );
 
 #Upset->deny_access_unless( "/",      "user_exists" );
 #Upset->deny_access_unless( "/admin", ['admin'] );
