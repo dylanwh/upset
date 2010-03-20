@@ -12,6 +12,7 @@ __PACKAGE__->config(
         Upset->path_to('root', 'include'),
     ],
     POST_CHOMP         => 1,
+    WRAPPER            => 'page.tt',
 );
 
 1;

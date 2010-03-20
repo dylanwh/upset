@@ -1,9 +1,7 @@
-[% WRAPPER "page.tt" %]
-    [% IF error_msg %]
-    <p>[% error_msg %]</p>
-    [% END %]
-    <form action="[% c.uri_for('/login') %]" method="get" name="openid">
-        <input type="text" name="openid_identifier" class="openid" />
-        <input type="submit" value="Sign in with OpenID" />
-    </form>
+[% IF error_msg %]
+<p>[% error_msg %]</p>
 [% END %]
+<form action="[% c.uri_for('/login') %]" method="get" name="openid">
+    <input type="text" name="openid_identifier" class="openid" />
+    <input type="submit" value="Sign in with OpenID" />
+</form>

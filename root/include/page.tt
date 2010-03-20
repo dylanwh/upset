@@ -2,8 +2,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
     <head>
-        [%#<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />%]
-        <title>[% title %]</title>
+        <title>[% template.title || 'no title' %]</title>
+        <script src="http://www.google.com/jsapi?key=ABQIAAAA_Bw4CThgCwK93DsNpjhBjRSBzL5Turhz8i2XobZV0rA-U9D8ZRRgHRhm9ILKekq4xsWkdS7ZnqMR8g" type="text/javascript"></script>
+        <script type="text/javascript">
+        google.load("jquery", "1.4.2");
+        google.load("jqueryui", "1.7.2");
+        </script>
 
         <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed.css" media="screen, tv, projection" />
         <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed_print.css" media="print" />
@@ -25,7 +29,11 @@
                 <h1>Actions</h1>
 
                 <a href="[% c.uri_for('/calendar') %]" class="menuItem">calendar</a>
+                [% IF c.user_exists %]
                 <a href="[% c.uri_for('/logout') %]" class="menuItem">logout</a>
+                [% ELSE %]
+                <a href="[% c.uri_for('/login') %]" class="menuItem">login</a>
+                [% END %]
 
                 [% IF c.check_user_roles('admin') %]
                 <h1>Admin</h1>
@@ -81,7 +89,6 @@
 
             </div>
             <!-- Content end -->
-
         </div>
         <!-- Main layout container end -->
     </body>

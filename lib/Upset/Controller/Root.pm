@@ -19,9 +19,21 @@ sub default :Path {
 
 sub access_denied :Private {
     my ( $self, $c, $action ) = @_;
-    $c->stash->{template} = 'access-denied.tt';
 
-    $c->forward('/login') unless $c->user_exists;
+    $c->log->debug('access denied');
+    $c->response->status(403);
+
+    if ($c->user_exists) {
+        $c->stash->{template} = 'access-denied.tt';
+    }
+    else {
+        $c->forward('/login');
+    }
+}
+
+sub begin :Private {
+    my ( $self, $c ) = @_;
+    $c->log->debug('begin!');
 }
 
 sub login :Local {

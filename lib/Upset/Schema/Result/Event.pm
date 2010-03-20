@@ -38,6 +38,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->belongs_to( 'user' => 'Upset::Schema::Result::User' );
+__PACKAGE__->belongs_to( 'creator' => 'Upset::Schema::Result::User' );
 
 1;
