@@ -1,3 +1,5 @@
+[% WRAPPER "page.tt" title = "Logged Out" %]
 <h1> Logout </h1>
 
 <p>You are now logged out. Have a nice day.</p>
+[% END %]

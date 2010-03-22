@@ -24,12 +24,11 @@ __PACKAGE__->add_columns(
     'roles' => {
         data_type     => 'TEXT',
         is_nullable   => 0,
-        default_value => 'user',
+        default_value => 'guest',
     },
 );
 
 __PACKAGE__->set_primary_key('url');
 __PACKAGE__->add_unique_constraint('user_nick_unique', ['nick']);
-
 
 1;

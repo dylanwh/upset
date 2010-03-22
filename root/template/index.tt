@@ -1,23 +1,6 @@
-[% META use_ext = 1 %]
-
+[% WRAPPER "page.tt" %]
 <p>Boring index page.</p>
 
 <div id="foo"></div>
 
-<script>
-    Ext.onReady(function () {
-        form = new Ext.FormPanel({
-            title:'A simple form',
-            height:170,
-            labelWidth:60,
-            items:[
-                new Ext.form.TextField({id:'tf', name:'uname', inputType: 'text',    fieldLabel: 'Name' }),
-                new Ext.form.TextArea( {id:'ta', name:'addr',  fieldLabel:'Address', height:70, width:150 })
-            ],
-            bbar:[{text:'Submit'}]
-        });
-        win  = new Ext.Window({applyTo: Ext.get('foo'), title: 'foo', height: 170, width: 60, items: form, layout: 'fit'});
-        win.show();
-        console.log("pants");
-    });
-</script>
+[% END %]

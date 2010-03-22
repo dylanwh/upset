@@ -1,0 +1,8 @@
+<h1>Tweets</h1>
+
+[% FOREACH tweet IN recent_tweets %]
+<p>
+<span class="subHeading">[% tweet.created_at.strftime("%Y.%m.%d @ %I:%M%P %Z") %]</span>
+[% tweet.text | html | twitter %]
+</p>
+[% END %]

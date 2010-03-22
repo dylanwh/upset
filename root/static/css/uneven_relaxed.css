@@ -250,3 +250,7 @@ strong, .subHeading {
   color: #DEFF00;
 }
 
+
+fieldset div, fieldset div label {
+    vertical-align: top;
+}

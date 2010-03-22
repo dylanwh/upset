@@ -23,17 +23,22 @@ sub access_denied :Private {
     $c->log->debug('access denied');
     $c->response->status(403);
 
-    if ($c->user_exists) {
-        $c->stash->{template} = 'access-denied.tt';
-    }
-    else {
-        $c->forward('/login');
-    }
+    $c->forward('/login');
 }
 
 sub begin :Private {
     my ( $self, $c ) = @_;
     $c->log->debug('begin!');
+
+    try {
+        $c->model('DB')->txn_do(
+            sub {
+                $c->stash->{recent_tweets} = [ $c->model('Twitter')->recent(10)->all ];
+            }
+        );
+    } catch {
+        $c->log->error($_);
+    };
 }
 
 sub login :Local {
