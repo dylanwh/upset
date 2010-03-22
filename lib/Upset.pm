@@ -31,9 +31,38 @@ $VERSION = eval $VERSION;
 
 Upset->config(
     name => 'Upset',
+
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     default_view                                => 'TT',
+
+    'Plugin::Authentication' => {
+        default_realm => 'openid',
+        realms        => {
+            openid => {
+                credential => {
+                    class    => 'OpenID',
+                    ua_class => 'LWP::UserAgent',
+                    extensions => [
+                        'http://openid.net/extensions/sreg/1.1',
+                        { optional => 'email,fullname,nickname' },
+                    ],
+                },
+            },
+            dbic => {
+                credential => {
+                    class         => 'Password',
+                    password_type => 'none',
+                },
+                store => {
+                    class       => 'DBIx::Class',
+                    user_class  => 'DB::User',
+                    role_column => 'roles',
+                },
+            },
+        }
+    },
+
 );
 
 Upset->setup();

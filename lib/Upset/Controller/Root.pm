@@ -54,19 +54,30 @@ sub login :Local {
 
             # Create basic user entry unless already found
             # (or use auto_create_user: 1)
-            unless ( $c->model('DB::User')->find( { url => $c->user->url } ) ) {
-                $c->model('DB::User')->create( { url => $c->user->url } );
+            my $user = $c->user;
+            unless ( $c->model('DB::User')->find( { url => $user->url } ) ) {
+                my $ext = $user->extensions->{'http://openid.net/extensions/sreg/1.1'};
+                my %user_info = (
+                    url      => $user->url,
+                    realname => $ext->{realname},
+                    email    => $ext->{email},
+                );
+                if ($ext->{nickname} and not $c->model('DB::User')->find( { nick => $ext->{nickname} } )) {
+                    $user_info{nick} = $ext->{nickname};
+                }
+
+                $c->model('DB::User')->create( \%user_info );
             }
 
             # Re-authenticate against local DBIC store
-            if ( $c->authenticate( { url => $c->user->url }, 'dbic' ) ) {
+            if ( $c->authenticate( { url => $user->url }, 'dbic' ) ) {
                 $c->log->debug("local login succeeded");
                 $c->flash->{'status_msg'} = 'Login was successful.';
                 $c->response->redirect( $c->uri_for("/") );
                 $c->detach();
             }
             else {
-                $c->log->error("local login failed for ${\$c->user->url}");
+                $c->log->error("local login failed for ${\$user->url}");
                 $c->flash->{'error_msg'} = 'Local login failed.';
             }
         }
