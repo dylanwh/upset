@@ -28,17 +28,14 @@
                 <!-- Menu items -->
                 <h1>Site</h1>
 
-                <a href="[% c.uri_for('/news') %]" class="menuItem">news</a>
-                [% IF c.check_user_roles('user') %]
-                <a href="[% c.uri_for('/news/create') %]" title="item" class="menuItem">post news</a>
-                [% END %]
+                <a href="http://wiki.unix-people.org/" class="menuItem">wiki</a>
                 [% IF c.user_exists %]
                 <a href="[% c.uri_for('/logout') %]" class="menuItem">logout</a>
                 [% ELSE %]
                 <a href="[% c.uri_for('/login') %]" class="menuItem">login</a>
                 [% END %]
 
-                [% IF c.check_user_roles('user') %]
+                [% IF c.check_user_roles('admin') %]
                 <h1>Admin</h1>
 
                 [% END %]

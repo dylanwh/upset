@@ -26,14 +26,14 @@ acronym {
   margin-right: 10px;
 }
 
-#content p {
+#content .block {
   margin-top: 0px;
   margin-bottom: 0px;
   padding: 8px;
-  background-color: #555555;
+  background-color: #555555 !important;
 }
 
-#content a {
+#content a:link, #content a:visited {
   text-decoration: none;
   border-bottom: 1px solid #DEFF00;
   color: #FFFFFF;
@@ -44,7 +44,7 @@ acronym {
   color: #DEFF00;
 }
 
-#content a img {
+#content a:link img, #content a:visited img {
   border: 0px;
 }
 
@@ -85,7 +85,7 @@ acronym {
   background: #333333 url(../images/round_corner.gif) no-repeat bottom right;
 }
 
-#footer a {
+#footer a:link, #footer a:visited {
   border: 0px;
   color: #DEFF00;
 }
@@ -110,7 +110,7 @@ acronym {
   background-color: #555555;
 }
 
-#sidebar a {
+#sidebar a:link, #sidebar a:visited {
   text-decoration: none;
   border-bottom: 1px solid #DEFF00;
   color: #FFFFFF;
@@ -120,13 +120,13 @@ acronym {
   color: #DEFF00;
 }
 
-#sidebar a img {
+#sidebar a:link img, #sidebar a:visited img {
   vertical-align:middle;
   padding: 0 5px 0 5px;
   border: 0px;
 }
 
-#sidebar a.menuItem {
+#sidebar a:link.menuItem, #sidebar a:visited.menuItem {
   display: block;
   clear: both;
   font-size: 0.8em;
@@ -175,7 +175,7 @@ acronym {
   padding-bottom: 3px;
 }
 
-#title a{
+#title a:link, #title a:visited {
   display: block;
   font-size: 10px;
   /*text-transform: lowercase;*/
@@ -222,7 +222,7 @@ strong, .subHeading {
   text-align: right;
 }
 
-.upArrow a img {
+.upArrow a:link img, .upArrow a:visited img {
   margin-top: 10px;
   border-bottom: 0px;
   background-color: #DEFF00;
