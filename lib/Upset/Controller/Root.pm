@@ -60,7 +60,7 @@ sub login :Local {
                 my %user_info = (
                     url      => $user->url,
                     realname => $ext->{realname},
-                    email    => $ext->{email},
+                    #email    => $ext->{email},
                 );
                 if ($ext->{nickname} and not $c->model('DB::User')->find( { nick => $ext->{nickname} } )) {
                     $user_info{nick} = $ext->{nickname};

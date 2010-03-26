@@ -2,7 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
     <head>
-        <title>[% template.title || 'no title' %]</title>
+        <title>[% title || 'no title' %]</title>
         [%#<script src="http://www.google.com/jsapi?key=ABQIAAAA_Bw4CThgCwK93DsNpjhBjRSBzL5Turhz8i2XobZV0rA-U9D8ZRRgHRhm9ILKekq4xsWkdS7ZnqMR8g" type="text/javascript"></script>
         <script type="text/javascript">
         google.load("jquery", "1.4.2");

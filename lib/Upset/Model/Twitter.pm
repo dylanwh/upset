@@ -65,7 +65,7 @@ before 'recent' => sub {
     my $tweet      = $self->most_recent;
     my $age        = $tweet ? time - $tweet->inserted_at->epoch : time;
 
-    if ( $age > 60 * 30 ) {
+    if ( $age > 60 * 5 ) {
         $self->log->debug("refreshing twitter feed, age = $age");
         my $statuses = $tweet
             ? $self->user_timeline( { since_id => $tweet->id } )

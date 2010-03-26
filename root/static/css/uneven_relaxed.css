@@ -183,7 +183,7 @@ acronym {
   border: 0px;
 }
 
-#title a:hover{
+#title a:hover {
   color: #DEFF00;
 }
 
@@ -254,3 +254,7 @@ strong, .subHeading {
 fieldset div, fieldset div label {
     vertical-align: top;
 }
+
+ul, ol, dl { padding-top: 0; margin-top: 0; }
+
+dd ul { padding-left: 0; padding-top: 0.5ex; }
