@@ -33,7 +33,7 @@ has 'net_twitter' => (
 has 'twitter_rs' => (
     is       => 'ro',
     required => 1,
-    handles  => [qw[ create most_recent recent ]],
+    handles  => [qw[ create most_recent recent find ]],
 );
 
 has 'log' => (
@@ -72,17 +72,19 @@ before 'recent' => sub {
             : $self->user_timeline();
         for my $status (@$statuses) {
             $status->created_at->set_time_zone('America/New_York');
-            $self->create(
-                {
-                    id          => $status->id,
-                    inserted_at => DateTime->now,
-                    created_at  => $status->created_at,
-                    text        => $status->text,
-                    user_name   => $status->user->screen_name,
-                    user_id     => $status->user->id,
-                    source      => $status->source,
-                }
-            );
+            unless ($self->find( $status->id )) {
+                $self->create(
+                    {
+                        id          => $status->id,
+                        inserted_at => DateTime->now,
+                        created_at  => $status->created_at,
+                        text        => $status->text,
+                        user_name   => $status->user->screen_name,
+                        user_id     => $status->user->id,
+                        source      => $status->source,
+                    }
+                );
+            }
         }
     }
 };

@@ -33,7 +33,7 @@ sub begin :Private {
     try {
         $c->model('DB')->txn_do(
             sub {
-                $c->stash->{recent_tweets} = [ $c->model('Twitter')->recent(10)->all ];
+                $c->stash->{recent_tweets} = [ $c->model('Twitter')->recent(5)->all ];
             }
         );
     } catch {
