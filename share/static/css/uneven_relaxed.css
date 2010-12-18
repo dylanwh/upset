@@ -187,10 +187,14 @@ acronym {
   color: #DEFF00;
 }
 
-strong, .subHeading {
+.subHeading {
   font-size: 0.8em;
   /*text-transform: uppercase;*/
   color: #DEFF00;
+}
+
+b, strong {
+	color: #DEFF00;
 }
 
 .subHeading {

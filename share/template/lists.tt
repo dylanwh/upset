@@ -1,0 +1,162 @@
+[% WRAPPER page.tt title = 'SLUG Lists' %]
+<h1>SLUG Mailing Lists</h1>
+<p class="block">
+The SLUG mailing lists have been created as a service to, and in support
+of, members of the Suncoast Linux Users Group.<strong>
+Note: no one is automatically subscribed to these lists, unless you
+specifically request this on your New Member Survey!</strong>
+
+<!-- list enumeration -->
+<div class="block">
+The following lists are available to the SLUG membership at large:
+<ul>
+	<li><a href="#slug-announce">SLUG Announce</a><br>for group announcements.
+	<li><a href="#slug">SLUG List</a><br>for normal technical assistance and Linux/computer-related topics.
+	<li><a href="#slug-politics">SLUG Politics</a><br>for topics too hot for the SLUG list.
+</ul>
+</div>
+
+<p class="block">
+The <strong>rules</strong> for the lists are <a href="listrules.html">here</a>.
+</p>
+
+<p class="block">
+Instructions for posting, subscribing and unsubscribing are <a href="#instructions">here</a>.
+</p>
+
+<p class="block">
+To find out if you're already subscribed or unsubscribed, go <a href="#subunsub">here</a>.
+</p>
+
+<p class="block">
+To search the message archives for the SLUG and other lists:
+</p>
+
+<div class="block">
+	<ul>
+	<li> <a href="http://www.suncoastlug.org/pipermail/slug-announce">SLUG Announce</a></li>
+	<li> <a href="http://www.suncoastlug.org/pipermail/slug">SLUG</a></li>
+	<li> <a href="http://www.suncoastlug.org/pipermail/slug-announce">SLUG Politics</a></li>
+</ul>
+(Sorry, this only goes from 10 April 2001 to the present.)
+</div>
+
+<p class="block">
+For problems you can't solve after reading over this page, go <a href="#problems">here</a>.
+</p>
+
+<!-- slug-announce -->
+
+<h1><a name="slug-announce"></a>The SLUG Announce List</h1>
+<p class="block"> 
+This list is for meeting and group event announcements only. <strong>You may
+not post to this list.</strong> When you sign up
+as a member of SLUG, you are given the option to subscribe to this list.
+<strong>This may be the only way you hear about meetings.</strong>
+</p>
+
+<p class="block">
+To <strong>subscribe</strong> or <strong>unsubscribe</strong>, follow the
+<a href="#instructions">instructions</a>.
+</p>
+
+<h1><a name="slug"></a>The SLUG Mailing List</h1>
+<p class="block">
+This is the main list for SLUG members.
+The primary purpose of this list is primarily to provide mutual assistance
+to SLUG members with technical questions. See the <a
+href="listrules.html">rules</a> for more information about what is and isn't
+allowed.
+</p>
+<p class="block">
+To <strong>subscribe</strong>, <strong>unsubscribe</strong> or <strong>post</strong>, see
+the <a href="#instructions">instructions</a>.
+</p>
+
+<h1><a name="slug-politics">The SLUG Politics List</a></h1>
+<p class="block"> 
+This list is for topics too volatile or off topic for the main SLUG list.
+There are no rules on this list, and no topic is forbidden. Even
+netiquette rules don't apply. If you post
+something too hot for the main SLUG list, you may be asked to move the
+discussion to this list.
+</p>
+
+<p class="block"> 
+To <strong>subscribe</strong>, <strong>unsubscribe</strong> or <strong>post</strong>, follow the
+<a href="#instructions">instructions</a>.
+</p>
+
+<a name="instructions"></a>
+<h1><a name="subscribe">How To Subscribe</a></h1>
+<p class="block"> Send an email to:<br />
+&lt;name-of-list&gt;-join@suncoastlug.org<br />
+where &lt;name-of-list&gt; can be <strong>slug</strong>,
+<strong>slug-politics</strong>, or <strong>slug-announce</strong>.
+</p>
+
+<div class="block">
+	<p> Or do it via the web interface: </p>
+
+	<ul>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug">slug</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-announce">slug-announce</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-politics">slug-politics</a></li>
+	</ul>
+</div>
+
+<!-- unsubscribe instructions -->
+
+<a name="unsub"><h1>How To Unsubscribe</h1></a>
+<p class="block"> Send an email to:<br />
+&lt;name-of-list&gt;-leave@suncoastlug.org<br />
+where &lt;name-of-list&gt; can be <strong>slug</strong>,
+<strong>slug-politics</strong>, or <strong>slug-announce</strong>.
+</p>
+
+<div class="block">
+	<p>Or do it via the web interface: </p>
+
+	<ul>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug">slug</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-announce">slug-announce</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-politics">slug-politics</a></li>
+	</ul>
+
+	<p>
+	<strong>Note:</strong> You must subscribe or unsubscribe from the address in
+	question, not some other address. Otherwise, you'll need to contact the
+	<a href="mailto:listadmin@suncoastlug.org">list administrator</a> for assistance.
+	</p>
+</div>
+
+<!-- posting instructions -->
+
+<a name="posting"><h1>How To Post Something</h1></a>
+<p class="block">
+Send an email to <em>&lt;name-of-list&gt;@suncoastlug.org</em>.
+</p>
+
+<!-- subscribing/unsubscribing -->
+
+<a name="subunsub"><h1>How to Check Subscription Status</h1></a>
+<div class="block">
+	<p> To find out if you're already subscribed, or have been unsubscribed for
+	some reason, use the web interface: </p>
+
+	<ul>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug">slug</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-announce">slug-announce</a></li>
+		<li><a href="http://suncoastlug.org/cgi-bin/mailman/listinfo/slug-politics">slug-politics</a></li>
+	</ul>
+</div>
+
+<!-- problems -->
+
+<a name="problems"><h1>Problems or Comments</h1></a>
+<p class="block">
+If you have problems or comments about the list, you may email the list
+maintainer at <a href="mailto:listadmin@suncoastlug.org">listadmin@suncoastlug.org</a>
+</p>
+
+[% END %]
