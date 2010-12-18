@@ -28,12 +28,12 @@
                 <!-- Menu items -->
                 <h1>Site</h1>
 
-                <a href="http://wiki.unix-people.org/" class="menuItem">wiki</a>
-                [% IF c.user_exists %]
-                <a href="[% c.uri_for('/logout') %]" class="menuItem">logout</a>
-                [% ELSE %]
-                <a href="[% c.uri_for('/login') %]" class="menuItem">login</a>
-                [% END %]
+                <a href="/" class="menuItem">home</a>
+                <a href="/page/history.html" class="menuItem">history</a>
+                <a href="/page/join.html" class="menuItem">join us</a>
+                <a href="/page/treasury.html" class="menuItem">treasury</a>
+                <a href="/page/meetings.html" class="menuItem">meetings</a>
+                <a href="/page/lists.html" class="menuItem">lists</a>
 
                 [% IF c.check_user_roles('admin') %]
                 <h1>Admin</h1>
@@ -57,9 +57,12 @@
                 <!-- Content header -->
                 <div id="header">
                     <a name="top"></a>
-                    <div id="title">
-                        <img src="/static/images/unix-people_logo.png" width="35" height="36" alt="logo"/><span class="highlight">unix</span>-people
-                        <a href="http://unix-people.org" title="unix people" style="border: 0px;">unix-people.org</a>
+                    <div id="title" style="padding: 0 0 0 0; text-align: right;">
+                    	<!--
+                        <img src="/static/images/pengu-logo.png" width="35" height="36" alt="logo"/><span class="highlight">s</span>uncoast<span class="highlight">lug</span>
+                        <a href="http://suncoastlug.org" title="unix people" style="border: 0px;">suncoastlug.org</a>
+                        -->
+                    	<img src="/static/images/slug-logo.png" style="vertical-align: bottom; padding: 0 0 0 0; border: 0 0 0 0;" alt="SLUG - [S]uncoast [L]inux [U]ser [G]roup" />
                     </div>
                 </div>
 

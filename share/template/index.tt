@@ -1,40 +1,14 @@
-[% WRAPPER "page.tt" title = "unix-people.org - a unix user's group" %]
+[% WRAPPER "page.tt" title = "SLUG Home Page" %]
 
-<h1>Introduction</h1>
+<h1>What is SLUG?</h1>
 
-<p class="block">Unix People is the glue which binds together a group of like-minded individuals in pinellas county (Pinellas Unix People),
-an older, established LUG which has meetings in Tampa (<a href="http://suncoastlug.org">SLUG</a>),
-and the tampa chapter of Perl Mongers (<a href="http://tampabay.pm.org">tampabay.pm</a>).
+<p class="block">
+The Suncoast Linux Users Group (affectionately known as SLUG) is a loose-knit
+	informal group of Linux users and enthusiasts in West Central Florida (the
+	Suncoast/Greater Tampa Bay area). Our purpose is to provide mutual support and
+	assistance for Linux users in the area, and to promote the use of Linux to
+	others. If you've used or are using Linux, are curious about it, want to join
+	the group, or just have comments, <a href="/contact.html">contact us</a>
 </p>
-
-<h1>Meetings</h1>
-
-<div class="block">
-<p>Eventually, this website will provide a calendaring service.
-Until then, please suffer the following links to other websites.</p>
-
-<dl>
-    <dt>Pinellas Unix People (PUP)</dt>
-    <dd>PUP has regular meetings on the 3rd Wednesday of the month.
-    <ul>
-        <li><a href="http://www.google.com/calendar/hosted/unix-people.org/embed?src=unix-people.org_0iqmvliod352fgssirjgsk66po%40group.calendar.google.com&ctz=America/New_York">Google Calendar</a></li>
-        <li><a href="http://www.facebook.com/group.php?v=app_2344061033&gid=208563121444">Event Tab on Facebook Group for PUP</a></li>
-    </ul></dd>
-
-    <dt>Suncoast LUG (SLUG) - Tampa</dt>
-    <dd>
-    <ul>
-        <li><a href="http://suncoastlug.org/calendar.php">Official</a></li>
-        <li><a href="http://www.google.com/calendar/hosted/unix-people.org/embed?src=unix-people.org_0iqmvliod352fgssirjgsk66po%40group.calendar.google.com&ctz=America/New_York">Google Calendar</a></li>
-    </ul></dd>
-
-    <dt>Tampa Bay Perl Mongers</dt>
-    <dd>
-    <ul>
-        <li><a href="http://tampabay.pm.org/about/Schedule">Official</a></li>
-        <li><a href="http://www.google.com/calendar/hosted/unix-people.org/embed?src=unix-people.org_0iqmvliod352fgssirjgsk66po%40group.calendar.google.com&ctz=America/New_York">Google Calendar</a></li>
-    </ul></dd>
-</dl>
-</div>
 
 [% END %]

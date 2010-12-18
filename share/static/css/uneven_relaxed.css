@@ -1,6 +1,6 @@
 body {
   font-family: arial, helvetica, sans-serif;
-  font-size: 0.75em;
+  font-size: 10pt;
   color: #FFFFFF;
   background-color: #000000;
 }
@@ -50,7 +50,7 @@ acronym {
 
 #content h1, #sidebar h1{
   clear: both;
-  font-size: 1.0em;
+  font-size: 1.4em;
   letter-spacing: 1px;
   /*text-transform: uppercase;*/
   text-indent: 10px;
@@ -70,7 +70,7 @@ acronym {
   text-align: right;
   vertical-align: bottom;
   margin-bottom: 0px;
-  background: url(../images/relaxed_hdr.gif) no-repeat top left;
+  background: url(../images/relaxed_hdr.png) no-repeat top left;
 }
 
 #footer {
@@ -129,7 +129,7 @@ acronym {
 #sidebar a:link.menuItem, #sidebar a:visited.menuItem {
   display: block;
   clear: both;
-  font-size: 0.8em;
+  font-size: 10pt;
   /*text-transform: uppercase;*/
   text-decoration: none;
   margin-top: 1px;
