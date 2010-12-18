@@ -41,7 +41,7 @@
                 [% END %]
 
                 <!-- News section -->
-                [% INCLUDE "tweets.tt" %]
+                [%# INCLUDE "tweets.tt" %]
 
                 <!-- Menu footer -->
                 <div id="sidebarFooter">
