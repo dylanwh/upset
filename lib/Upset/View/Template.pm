@@ -7,6 +7,8 @@ use MooseX::Types::Moose ':all';
 use MooseX::Params::Validate;
 use Template;
 
+with 'Upset::Role::View';
+
 has '_template' => (
     is         => 'ro',
     isa        => 'Template',
@@ -25,18 +27,24 @@ sub _build__template {
 }
 
 sub render {
-    my $self = shift;
-    my ($resp, $vars) = pos_validated_list(
-        \@_,
-        { isa => 'Plack::Response' },
-        { isa => HashRef },
-    );
+    my ($self, $req, $vars) = @_;
 
+    my $resp = $req->new_response(200);
     $resp->content_type('text/html') unless $resp->content_type;
+
+    local $vars->{request}  = $req;
+    local $vars->{response} = $resp;
+
     my $content = "";
-    $self->_template->process($vars->{file}, $vars, \$content)
-        or die $self->_template->error;
-    $resp->content($content);
+    if ($self->_template->process($vars->{file}, $vars, \$content)) {
+        $resp->content($content);
+    }
+    else {
+        $resp->content("Error: " . $self->_template->error);
+        $resp->content_type('text/plain');
+        $resp->status(500);
+    }
+
 
     return $resp;
 }

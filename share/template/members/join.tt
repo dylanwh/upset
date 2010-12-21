@@ -1,0 +1,80 @@
+[% WRAPPER page.tt title = "Join Us" %]
+
+[% UNLESS form.submitted %]
+<h1>Join Us</h1>
+<p class="block"> The Suncoast Linux Users Group (SLUG) is a group of Linux
+users in the Greater Tampa Bay area who have a common interest in Linux, and
+everything related to supporting Linux and Linux users.</p>
+
+<h1>Why join SLUG?</h1>
+<p class="block">
+There are many reasons to join the Suncoast Linux Users Group!
+</p>
+
+<div class="block">
+	<ul>
+		<li> It doesn't cost anything (so far).</li>
+		<li> You help the effort to make Linux a major contender against those "Goliath"
+		operating systems.</li>
+		<li> You get to participate in any special offers that SLUG can arrange for
+		its members.</li>
+		<li>
+		You get the help and support of other members.</li>
+		<li>
+		You might even learn something!</li>
+	</ul>
+</div>
+
+<h1>How do I join SLUG?</h1>
+<p class="block">
+We ask only one thing: just fill out our 
+<a href="#newmember">New Member Survey</a>.
+We ask you a few questions, like your name and email address,
+what the group can do for you, and we send you a confirmation.
+We add your name to our list (which is only used internally for announcements of group
+events and such). And, though participation is how you'll get the most
+out of any group membership, you're not obligated to come to meetings or
+subscribe to the SLUG mailing list. It's up to you!
+</p>
+
+<h1>Can I volunteer?</h1>
+<p class="block">
+Heck yes! We can always use volunteers to help out with one thing or another.
+Just fill out the <a href="[% request.uri_for('/volunteer') %]">Volunteer Form</a>
+and we'll keep it on file until we need your help.
+</p>
+
+[% END %]
+
+<h1>New Member Survey</h1>
+<a name="newmember"></a>
+
+[% UNLESS form.submitted %]
+<p class="block">
+Please note: Although it is unlikely that you will experience any problems
+responding to this form, certain non-standard browsers will not respond
+properly. If you experience any difficulties, (or if you are not using a
+forms-capable browser) you can email newmembers@suncoastlug.org with the basic
+info.
+</p>
+
+<p class="block">
+In order to join SLUG, we need some basic information about you - like your
+name and e-mail address so we know who's on our membership list and where to
+send SLUG announcements. The only fields that are mandatory are Name and email
+address. In order to make SLUG more responsive to the needs of its members, we
+ask that you complete the rest of the form.
+</p>
+
+<p class="block">
+We do not have any dues - everything is Dutch-treat. We do, from time to time,
+give away t-shirts and bumper stickers at meetings, if Linux vendors are kind
+enough to supply them to us. 
+</p>
+[% END %]
+
+<div class="block">
+	[% form.render() %]
+</div>
+
+[% END %]

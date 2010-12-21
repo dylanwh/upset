@@ -2,8 +2,18 @@ package Upset::Container;
 use Moose;
 use namespace::autoclean;
 
+use Path::Router;
+
+use Upset::App;
+use Upset::Router;
+use Upset::Config;
+use Upset::Model;
 use Upset::View::Template;
 use Upset::Adapter::Template;
+use Upset::Adapter::Members;
+use Upset::Adapter::Jobs;
+use Upset::Form;
+
 
 use Bread::Board;
 use Bread::Board::LifeCycle::Singleton::WithParameters;
@@ -12,7 +22,7 @@ extends 'Bread::Board::Container';
 
 has '+name' => ( default => 'Upset' );
 
-has 'include_path' => (
+has 'template_path' => (
     is       => 'ro',
     isa      => 'ArrayRef[Str]',
     required => 1,
@@ -22,12 +32,48 @@ sub BUILD {
     my $self = shift;
 
     container $self => as {
-        service include_path => $self->include_path;
-        typemap 'Upset::View::Template' => infer(
+        service template_path => $self->template_path;
+
+        service model_dsn     => 'bdb:dir=data';
+        service model_args    => { create => 1 };
+        service confname      => 'upset';
+
+        typemap 'Upset::Router' => infer;
+        typemap 'Upset::App'   => infer;
+
+        typemap 'Upset::Config' => infer(
+            dependencies => wire_names('confname'),
             lifecycle    => 'Singleton::WithParameters',
-            dependencies => wire_names('include_path'),
         );
-        typemap 'Upset::Adapter::Template' => infer(lifecycle => 'Singleton::WithParameters');
+
+        typemap 'Upset::Model' => infer(
+            dependencies => {
+                dsn        => depends_on('model_dsn'),
+                extra_args => depends_on('model_args'),
+            },
+            lifecycle    => 'Singleton::WithParameters',
+        );
+
+        typemap 'Upset::View::Template' => infer(
+            dependencies => { 'include_path' => depends_on('template_path') },
+            lifecycle    => 'Singleton::WithParameters',
+        );
+
+        service 'form' => (
+            class      => 'Upset::Form',
+            parameters => { schema => { optional => 0 } },
+            lifecycle  => 'Singleton::WithParameters',
+        );
+
+        typemap 'Upset::Form' => 'form';
+
+        typemap 'Upset::Adapter::Template' => infer;
+        typemap 'Upset::Adapter::Members' => infer(
+            parameters => { form => { optional => 0 } },
+        );
+        typemap 'Upset::Adapter::Jobs' => infer(
+            parameters => { form => { optional => 0 } },
+        );
     };
 }
 

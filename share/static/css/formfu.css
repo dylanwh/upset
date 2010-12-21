@@ -1,0 +1,26 @@
+.formfu .error_message {
+	color: red;
+	font-weight: bold;
+	font-size: large;
+}
+
+/* add an asterisk at the end of the label for required fields */
+.formfu fieldset .constraint_required label:after {
+	content: " *";
+}
+
+.formfu .textarea label, .formfu .text label, .formfu .select label, .formfu .checkbox label { position: absolute; text-align:left; width:125px; }
+.formfu input[type=text], .formfu input[type=checkbox], .formfu textarea, .formfu select { margin-left: 135px; }
+
+/* label { display: block; clear:both; } */
+
+.formfu .submit, .formfu .reset {
+	text-align: right;
+}
+
+.formfu .recaptcha {
+	margin-top: 2ex;
+	margin-bottom: 2ex;
+}
+
+

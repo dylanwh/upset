@@ -1,19 +1,16 @@
 #!/usr/bin/env perl
 use strict;
-use Upset;
 use Plack::Builder;
 use Plack::App::File;
-use Plack::App::Path::Router;
-
-use Upset::Router;
 use Upset::Container;
 
-my $c      = Upset::Container->new(include_path => ['share/template', 'share/template/include']);
-my $router = Upset::Router->new;
+my $c      = Upset::Container->new( 
+    template_path => ['share/template', 'share/template/include'],
+    form_path => 'share/forms',
+);
+my $app = $c->resolve(type => 'Upset::App');
 
-$router->establish_routes( $c );
-
-my $app = Plack::App::Path::Router->new( router => $router );
+$app->establish_routes($c);
 
 builder {
     enable "Plack::Middleware::XSendfile";

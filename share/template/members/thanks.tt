@@ -1,0 +1,8 @@
+[% WRAPPER page.tt title = "Thanks for Joining" %]
+
+<h1>Thanks</h1>
+<p class="block">
+<br />
+</p>
+
+[% END %]

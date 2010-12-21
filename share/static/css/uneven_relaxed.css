@@ -26,6 +26,21 @@ acronym {
   margin-right: 10px;
 }
 
+#content ul {
+	margin-left: 1em; padding-left: 5px;
+}
+
+#content p, #content div {
+	margin-top: 0;
+	padding-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#content blockquote {
+	margin-bottom: 0;
+}
+
 #content .block {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -52,7 +67,6 @@ acronym {
   clear: both;
   font-size: 1.4em;
   letter-spacing: 1px;
-  /*text-transform: uppercase;*/
   text-indent: 10px;
   margin: 0px;
   border-top: 10px solid #000000;
@@ -60,6 +74,19 @@ acronym {
   color: #DEFF00;
   background-color: #006DA6;
 }
+
+#content h2, #sidebar h2 {
+  clear: both;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  text-indent: 10px;
+  margin: 0px;
+  border-top: 10px solid #000000;
+  border-bottom: 10px solid #333333;
+  color: #DEFF00;
+  background-color: #006DA6;
+}
+
 
 /* -- Content header and footer -- */
 
@@ -78,7 +105,6 @@ acronym {
   height: 75px;
   width: 550px;
   font-size: 0.8em;
-  /* text-transform: lowercase; */
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -130,7 +156,6 @@ acronym {
   display: block;
   clear: both;
   font-size: 10pt;
-  /*text-transform: uppercase;*/
   text-decoration: none;
   margin-top: 1px;
   padding: 0 0 0 25px;
@@ -178,7 +203,6 @@ acronym {
 #title a:link, #title a:visited {
   display: block;
   font-size: 10px;
-  /*text-transform: lowercase;*/
   margin-top: -0px;
   border: 0px;
 }
@@ -187,19 +211,17 @@ acronym {
   color: #DEFF00;
 }
 
-.subHeading {
+.subHeading, h2 {
   font-size: 0.8em;
-  /*text-transform: uppercase;*/
   color: #DEFF00;
+  display: block;
 }
 
 b, strong {
 	color: #DEFF00;
 }
 
-.subHeading {
-  display: block;
-}
+
 
 /* -- Images styles -- */
 
@@ -250,7 +272,6 @@ b, strong {
 .author {
   display: block;
   font-size: 0.8em;
-  /*text-transform: uppercase;*/
   color: #DEFF00;
 }
 
@@ -262,3 +283,9 @@ fieldset div, fieldset div label {
 ul, ol, dl { padding-top: 0; margin-top: 0; }
 
 dd ul { padding-left: 0; padding-top: 0.5ex; }
+
+.buttonbox { text-align: right; }
+table.jobs_approve, table.jobs_approve td, table.jobs_approve th {
+	text-align: left;
+	vertical-align: top;
+}

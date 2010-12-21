@@ -1,0 +1,25 @@
+[% WRAPPER page.tt title = "Job Posting Form" %]
+
+<h1>Job Posting Form</h1>
+
+<p class="block">
+This is where you, as an employer or agent for employers, get to advertise your
+jobs openings to the Linux community of the Tampa Bay area. For now, the cost
+is free. SLUG makes these job announcements available as a service to its
+members.
+</p>
+
+<p class="block">
+Please fill out the form below to have your job posting listed on the SLUG 
+<a href="[% request.uri_for('Jobs') %]">Jobs</a>
+page. Your request for posting will be reviewed, and if accepted, will appear
+on the Jobs page within 48 hours. Please note: your job posting will expire in
+one month. 
+</p>
+
+<div class="block">
+[% form.render %]
+</div>
+
+
+[% END %]

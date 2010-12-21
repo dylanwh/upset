@@ -1,0 +1,54 @@
+[% USE Markdown -%]
+
+[% IF seek_approval %]
+	<form method="post" action="[% request.uri_for('Jobs', action = 'approve') %]">
+[% END %]
+
+[% FOREACH job IN jobs %]
+	<h2 class="subHeading">
+		[% IF seek_approval %]
+		<input type="checkbox" value="[% job.uuid %]" name="jobs" />
+		[% END %]
+		[% job.item.title %]
+	</h2>
+	<div class="block">
+		<table class="jobs_approve">
+			<tr>
+				<td>&nbsp;</td>
+				<th>Contact:</th>
+				<td> 
+					<a href="mailto:[% job.item.contact_email %]">
+						[% job.item.contact %] 
+					</a>
+					<br />
+					Tel: [% job.item.contact_phone %]
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Description:</th>
+				<td>[% job.item.description %]</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>[% job.item.long_description | markdown %]</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<th>Requirements:</th>
+				<td>[% job.item.requirements | markdown %]</td>
+			</tr>	
+		</table>
+	</div>
+	[% IF seek_approval %]
+		<p class="block buttonbox">
+		<input type="submit" value="Delete"  name="button" />
+		<input type="submit" value="Approve" name="button" />
+		</p>
+	[% END %]
+[% END %]
+
+[% IF seek_approval %]
+	</form>
+[% END %]

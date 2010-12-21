@@ -1,0 +1,10 @@
+[% WRAPPER page.tt title = "Linux Jobs" formfu="no" %]
+
+<h1>Approve Jobs</h1>
+<p class="block">
+Hello [% request.user %]. Below is a list of jobs to approve.
+</p>
+
+[% INCLUDE "jobs/list.tt" seek_approval=1 %]
+
+[% END %]

@@ -1,3 +1,4 @@
+[% DEFAULT formfu = "yes" %]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
@@ -10,6 +11,7 @@
         </script>%]
 
         <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed.css" media="screen, tv, projection" />
+        <link rel="stylesheet" type="text/css" href="/static/css/formfu.css" media="screen, tv, projection" />
         <link rel="stylesheet" type="text/css" href="/static/css/uneven_relaxed_print.css" media="print" />
     </head>
 
@@ -29,11 +31,12 @@
                 <h1>Site</h1>
 
                 <a href="/" class="menuItem">home</a>
-                <a href="/page/history.html" class="menuItem">history</a>
-                <a href="/page/join.html" class="menuItem">join us</a>
-                <a href="/page/treasury.html" class="menuItem">treasury</a>
+                <a href="[% request.uri_for('Members', action = 'join') %]" class="menuItem">join us</a>
                 <a href="/page/meetings.html" class="menuItem">meetings</a>
                 <a href="/page/lists.html" class="menuItem">lists</a>
+                <a href="[% request.uri_for('Jobs') %]" class="menuItem">jobs</a>
+                <a href="/page/treasury.html" class="menuItem">treasury</a>
+                <a href="/page/history.html" class="menuItem">history</a>
 
                 [% IF c.check_user_roles('admin') %]
                 <h1>Admin</h1>
