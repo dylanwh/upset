@@ -9,8 +9,8 @@
 	content: " *";
 }
 
-.formfu .textarea label, .formfu .text label, .formfu .select label, .formfu .checkbox label { position: absolute; text-align:left; width:125px; }
-.formfu input[type=text], .formfu input[type=checkbox], .formfu textarea, .formfu select { margin-left: 135px; }
+.formfu .textarea label, .formfu .text label, .formfu .select label, .formfu .checkbox label { position: absolute; text-align:left; width:120px; }
+.formfu input[type=text], .formfu input[type=checkbox], .formfu textarea, .formfu select { margin-left: 130px; }
 
 /* label { display: block; clear:both; } */
 
@@ -23,4 +23,6 @@
 	margin-bottom: 2ex;
 }
 
-
+.formfu .is_public {
+	height: 5ex;
+}

@@ -4,6 +4,7 @@ use namespace::autoclean;
 
 use HTML::FormFu;
 use MooseX::Types::Moose ':all';
+use MooseX::Types::Structured 'Dict';
 
 has 'form' => (
     is         => 'ro',
@@ -16,6 +17,12 @@ has 'description' => (
     is         => 'ro',
     isa        => HashRef,
     lazy_build => 1,
+);
+
+has 'recaptcha' => (
+    is        => 'ro',
+    isa       => Dict[ public_key => Str, private_key => Str ],
+    predicate => 'has_recaptcha',
 );
 
 has 'schema' => (
@@ -49,15 +56,21 @@ sub _build_form {
         }
     }
 
-    $form->elements(
-        [sort { $a->{stash}{order} <=> $b->{stash}{order} } @elements]
+    @elements = sort { $a->{stash}{order} <=> $b->{stash}{order} } @elements;
+
+    if ($self->has_recaptcha) {
+        push @elements, {
+            type => 'reCAPTCHA',
+            name => 'recaptcha',
+            %{ $self->recaptcha },
+        };
+    }
+
+    push(@elements,
+        { type => 'Submit', name => 'submit', value => 'Submit' },
+        { type => 'Reset',  name => 'clear',  value => 'Clear' }
     );
-    $form->elements(
-        [
-            { type => 'Submit', name => 'submit', value => 'Submit' },
-            { type => 'Reset',  name => 'clear',  value => 'Clear' },
-        ]
-    );
+    $form->elements(\@elements);
 
     return $form;
 }

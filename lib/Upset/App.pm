@@ -29,10 +29,6 @@ sub establish_routes {
             )
         },
     );
-    $router->add_route('/members',
-        target => Plack::Middleware::Auth::Basic->new(app => $members, authenticator => sub { 1 }),
-        name   => $members->name,
-    );
     $router->add_route('/join', target => $members, defaults => { action => 'join' });
 
     my $jobs = $c->resolve(
@@ -44,16 +40,14 @@ sub establish_routes {
             )
         },
     );
-    $router->add_route( '/jobs', 
-        target => $jobs
-    );
+    $router->add_route( '/jobs', target => $jobs );
     $router->add_route( '/jobs/approve', 
         target   => $jobs,
         defaults => { action => 'approve' }
     );
-    $router->add_route( '/jobs/create',
+    $router->add_route( '/jobs/publish',
         target   => $jobs,
-        defaults => { action => 'create' },
+        defaults => { action => 'publish' },
     );
 }
 

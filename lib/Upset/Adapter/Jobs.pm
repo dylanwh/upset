@@ -73,15 +73,15 @@ sub GET {
     $self->render($req => { file => 'jobs/index.tt', jobs => $self->jobs(approved => 1) });
 }
 
-sub GET_create {
+sub GET_publish {
     my ($self, $req) = @_;
   
     $self->form->action( $req->uri_for('Jobs', { action => $req->action }) );
     $self->form->process($req);
-    $self->render($req => { file => 'jobs/create.tt', form => $self->form });
+    $self->render($req => { file => 'jobs/publish.tt', form => $self->form });
 }
 
-sub POST_create {
+sub POST_publish {
     my ($self, $req) = @_;
     my $model = $self->model;
     my $form  = $self->form;
@@ -92,7 +92,7 @@ sub POST_create {
         $self->GET($req);
     }
     else {
-        $self->render($req => { file => 'jobs/create.tt', form => $self->form });
+        $self->render($req => { file => 'jobs/publish.tt', form => $self->form });
     }
 }
 

@@ -38,13 +38,34 @@ sub BUILD {
         service model_args    => { create => 1 };
         service confname      => 'upset';
 
-        typemap 'Upset::Router' => infer;
-        typemap 'Upset::App'   => infer;
-
-        typemap 'Upset::Config' => infer(
+        service config => (
+            class        => 'Upset::Config',
             dependencies => wire_names('confname'),
+            lifecycle    => 'Singleton',
+        );
+
+        service recaptcha => (
+            block => sub {
+                my $s = shift;
+                my $config = $s->param('config');
+                return +{
+                    public_key  => $config->get( key => 'recaptcha.public-key' ),
+                    private_key => $config->get( key => 'recaptcha.private-key' ),
+                };
+            },
+            dependencies => wire_names('config'),
+        );
+
+        service form => (
+            class        => 'Upset::Form',
+            parameters   => { schema => { optional => 0 } },
+            dependencies => wire_names('recaptcha'),
             lifecycle    => 'Singleton::WithParameters',
         );
+
+        typemap 'Upset::Router' => infer;
+        typemap 'Upset::Config' => 'config';
+        typemap 'Upset::App'   => infer;
 
         typemap 'Upset::Model' => infer(
             dependencies => {
@@ -57,12 +78,6 @@ sub BUILD {
         typemap 'Upset::View::Template' => infer(
             dependencies => { 'include_path' => depends_on('template_path') },
             lifecycle    => 'Singleton::WithParameters',
-        );
-
-        service 'form' => (
-            class      => 'Upset::Form',
-            parameters => { schema => { optional => 0 } },
-            lifecycle  => 'Singleton::WithParameters',
         );
 
         typemap 'Upset::Form' => 'form';
