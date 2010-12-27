@@ -89,10 +89,10 @@ sub POST_create {
     if ($form->process($req)) {
         my $job = $form->to_object;
         $model->add_job($job);
-        $self->render($req => { file => 'jobs/create.tt', form => $self->form });
+        $self->GET($req);
     }
     else {
-        $self->GET($req);
+        $self->render($req => { file => 'jobs/create.tt', form => $self->form });
     }
 }
 
