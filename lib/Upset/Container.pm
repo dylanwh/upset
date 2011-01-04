@@ -35,7 +35,10 @@ sub BUILD {
         service template_path => $self->template_path;
 
         service model_dsn     => 'bdb:dir=data';
-        service model_args    => { create => 1 };
+        service model_args => {
+            create          => 1,
+            allow_classes => [ 'DateTime::Span', 'DateTime::SpanSet', 'Set::Infinite::_recurrence'],
+        };
         service confname      => 'upset';
         service passwd        => 'passwd';
 

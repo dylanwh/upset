@@ -3,12 +3,15 @@ use Moose;
 use namespace::autoclean;
 
 use MooseX::Params::Validate;
-use KiokuDB::Util qw(set);
 use MooseX::Types::Moose ':all';
 use Upset::Schema::Types ':all';
 
-use constant MEMBERS => 'set:members';
-use constant JOBS    => 'set:jobs';
+use KiokuDB::Util qw(set);
+use Upset::Schema::Schedule;
+
+use constant MEMBERS  => 'set:members';
+use constant JOBS     => 'set:jobs';
+use constant SCHEDULE => 'schedule';
 
 extends 'KiokuX::Model';
 
@@ -16,6 +19,7 @@ sub init {
     my $self    = shift;
     $self->store(MEMBERS() => set());
     $self->store(JOBS()    => set());
+    $self->store(SCHEDULE() => Upset::Schema::Schedule->new);
 }
 
 sub add_member {
@@ -68,6 +72,12 @@ sub jobs {
     my $self = shift;
 
     return $self->lookup(JOBS);
+}
+
+sub schedule {
+    my $self = shift;
+
+    return $self->lookup(SCHEDULE);
 }
 
 __PACKAGE__->meta->make_immutable;
