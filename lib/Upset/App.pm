@@ -24,8 +24,11 @@ sub establish_routes {
         type       => 'Upset::Adapter::Members',
         parameters => {
             form => $c->resolve(
-                type       => 'Upset::Form',
-                parameters => { schema => Upset::Schema::Member->meta },
+                service    => 'form',
+                parameters => {
+                    schema    => Upset::Schema::Member->meta,
+                    recaptcha => $c->resolve( service => 'recaptcha' ),
+                },
             )
         },
     );
@@ -35,14 +38,21 @@ sub establish_routes {
         type       => 'Upset::Adapter::Jobs',
         parameters => {
             form => $c->resolve(
-                type       => 'Upset::Form',
-                parameters => { schema => Upset::Schema::Job->meta },
+                service    => 'form',
+                parameters => {
+                    schema    => Upset::Schema::Job->meta,
+                    recaptcha => $c->resolve( service => 'recaptcha' ),
+                },
             )
         },
     );
     $router->add_route( '/jobs', target => $jobs );
-    $router->add_route( '/jobs/approve', 
-        target   => $jobs,
+    $router->add_route( '/jobs/approve',
+        target => $c->resolve(
+            service    =>  'auth_basic',
+            parameters => { app => $jobs },
+        ),
+        name     => $jobs->name,
         defaults => { action => 'approve' }
     );
     $router->add_route( '/jobs/publish',
