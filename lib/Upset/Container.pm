@@ -37,6 +37,7 @@ sub BUILD {
         service model_dsn     => 'bdb:dir=data';
         service model_args    => { create => 1 };
         service confname      => 'upset';
+        service passwd        => 'passwd';
 
         service config => (
             class        => 'Upset::Config',
@@ -56,31 +57,41 @@ sub BUILD {
             dependencies => wire_names('config'),
         );
 
+        service authenticator => (
+            class        => 'Authen::Simple::Passwd',
+            dependencies => wire_names('passwd'),
+        );
+
         service form => (
             class        => 'Upset::Form',
-            parameters   => { schema => { optional => 0 } },
-            dependencies => wire_names('recaptcha'),
+            parameters   => { schema => { optional => 0 }, recaptcha => { optional => 1 } },
             lifecycle    => 'Singleton::WithParameters',
         );
 
-        typemap 'Upset::Router' => infer;
+        service auth_basic => (
+            class        => 'Plack::Middleware::Auth::Basic',
+            dependencies => wire_names('authenticator'),
+            parameters   => ['app'],
+            lifecycle    => 'Singleton::WithParameters',
+        );
+
         typemap 'Upset::Config' => 'config';
-        typemap 'Upset::App'   => infer;
+        typemap 'Upset::Form'   => 'form';
+        typemap 'Upset::Router' => infer;
+        typemap 'Upset::App'    => infer;
 
         typemap 'Upset::Model' => infer(
             dependencies => {
                 dsn        => depends_on('model_dsn'),
                 extra_args => depends_on('model_args'),
             },
-            lifecycle    => 'Singleton::WithParameters',
+            lifecycle    => 'Singleton',
         );
 
         typemap 'Upset::View::Template' => infer(
             dependencies => { 'include_path' => depends_on('template_path') },
-            lifecycle    => 'Singleton::WithParameters',
+            lifecycle    => 'Singleton',
         );
-
-        typemap 'Upset::Form' => 'form';
 
         typemap 'Upset::Adapter::Template' => infer;
         typemap 'Upset::Adapter::Members' => infer(

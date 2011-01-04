@@ -17,7 +17,7 @@ ok($c, "built");
 
 {
     my $form = $c->resolve(
-        type => 'Upset::Form', 
+        service => 'form',
         parameters => { schema => Upset::Schema::Member->meta }
     );
 
@@ -28,7 +28,6 @@ ok($c, "built");
             submit => 'Submit'
         }
     );
-    use YAML::XS;
     is($form->form->param_value('name'), 'Dylan William Hardison');
     is($form->form->param_value('email'), 'dylan@hardison.net');
     my $member = $form->to_object;
@@ -36,6 +35,11 @@ ok($c, "built");
     is($member->name, 'Dylan William Hardison');
     is($member->email, 'dylan@hardison.net');
 }
+
+{
+    my $auth = $c->resolve(service => 'authenticator');
+};
+
 
 
 done_testing;
