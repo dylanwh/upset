@@ -4,10 +4,7 @@ use Plack::Builder;
 use Plack::App::File;
 use Upset::Container;
 
-my $c      = Upset::Container->new( 
-    template_path => ['share/template', 'share/template/include'],
-    form_path => 'share/forms',
-);
+my $c   = Upset::Container->new;
 my $app = $c->resolve(type => 'Upset::App');
 
 $app->establish_routes($c);

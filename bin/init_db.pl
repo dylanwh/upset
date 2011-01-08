@@ -10,9 +10,8 @@ use Plack::App::File;
 
 use Upset::Container;
 
-my $c      = Upset::Container->new( 
+my $c  = Upset::Container->new( 
     template_path => ['share/template', 'share/template/include'],
-    form_path => 'share/forms',
 );
 
 my $model = $c->resolve(type => 'Upset::Model');

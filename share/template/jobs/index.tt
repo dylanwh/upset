@@ -3,7 +3,7 @@
 <h1>Linux Jobs</h1>
 <p class="block">
 (If you have a job you'd like to offer to Linux users in the Tampa Bay area, 
-<a href="[% request.uri_for('Jobs', action = 'create') %]">use this form</a>.)
+<a href="[% request.uri_for('Jobs', action = 'publish') %]">use this form</a>.)
 </p>
 
 <p class="block">

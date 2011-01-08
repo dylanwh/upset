@@ -174,6 +174,11 @@ acronym {
   background: #333333 url(../images/relaxed_hdr_bg.gif) repeat-x bottom right;;
 }
 
+#sidebarHeader * {
+	padding-top: 15px;
+	text-align: center;
+}
+
 #sidebarFooter {
   height: 70px;
   border-top: 10px solid #000000;

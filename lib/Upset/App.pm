@@ -59,6 +59,12 @@ sub establish_routes {
         target   => $jobs,
         defaults => { action => 'publish' },
     );
+
+    $router->add_route( '/meetings',
+        target   => $c->resolve( type => 'Upset::Adapter::Schedule' ),
+        defaults => { action          => 'list' },
+    );
+
 }
 
 __PACKAGE__->meta->make_immutable;

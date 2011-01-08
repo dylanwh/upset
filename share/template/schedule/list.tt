@@ -1,0 +1,27 @@
+[% WRAPPER page.tt title = "Meetings" %]
+
+[% FOREACH event IN events %]
+<a name="#[% event.name %]"></a>
+<h1>
+	[% IF event.has_title %]
+		[% event.title %]
+	[% ELSE %]
+		[% event.name | ucfirst %]
+	[% END %]
+	- 
+	[% 
+		event.span.start.strftime("%x")
+	%]
+</h2>
+<p class="block">
+<strong>Time:</strong> 
+[% event.span.start.strftime("%X") %] - 
+[% event.span.end.strftime("%X") %]
+</p>
+<p class="block">
+<strong>Location:</strong> <br />
+[% event.location | html | html_line_break  %]
+</p>
+[% END %]
+
+[% END %]

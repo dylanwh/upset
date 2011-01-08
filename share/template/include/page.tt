@@ -24,7 +24,7 @@
 
                 <!-- Menu header start -->
                 <div id="sidebarHeader">
-                    &nbsp;
+                    <img src="/static/images/pengu-yellow.png" alt="mascot" />
                 </div>
 
                 <!-- Menu items -->
@@ -32,16 +32,11 @@
 
                 <a href="/" class="menuItem">home</a>
                 <a href="[% request.uri_for('Members', action = 'join') %]" class="menuItem">join us</a>
-                <a href="/page/meetings.html" class="menuItem">meetings</a>
+                <a href="[% request.uri_for('Schedule', action = 'list') %]" class="menuItem">meetings</a>
                 <a href="/page/lists.html" class="menuItem">lists</a>
                 <a href="[% request.uri_for('Jobs') %]" class="menuItem">jobs</a>
                 <a href="/page/treasury.html" class="menuItem">treasury</a>
                 <a href="/page/history.html" class="menuItem">history</a>
-
-                [% IF c.check_user_roles('admin') %]
-                <h1>Admin</h1>
-
-                [% END %]
 
                 <!-- News section -->
                 [%# INCLUDE "tweets.tt" %]
@@ -65,7 +60,9 @@
                         <img src="/static/images/pengu-logo.png" width="35" height="36" alt="logo"/><span class="highlight">s</span>uncoast<span class="highlight">lug</span>
                         <a href="http://suncoastlug.org" title="unix people" style="border: 0px;">suncoastlug.org</a>
                         -->
+                        <a href="[% request.uri_for('Page') %]">
                     	<img src="/static/images/slug-logo.png" style="vertical-align: bottom; padding: 0 0 0 0; border: 0 0 0 0;" alt="SLUG - [S]uncoast [L]inux [U]ser [G]roup" />
+                    </a>
                     </div>
                 </div>
 

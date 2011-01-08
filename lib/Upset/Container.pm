@@ -12,6 +12,7 @@ use Upset::View::Template;
 use Upset::Adapter::Template;
 use Upset::Adapter::Members;
 use Upset::Adapter::Jobs;
+use Upset::Adapter::Schedule;
 use Upset::Form;
 
 
@@ -22,17 +23,11 @@ extends 'Bread::Board::Container';
 
 has '+name' => ( default => 'Upset' );
 
-has 'template_path' => (
-    is       => 'ro',
-    isa      => 'ArrayRef[Str]',
-    required => 1,
-);
-
 sub BUILD {
     my $self = shift;
 
     container $self => as {
-        service template_path => $self->template_path;
+        service template_path => ['share/template', 'share/template/include'];
 
         service model_dsn     => 'bdb:dir=data';
         service model_args => {
@@ -97,6 +92,7 @@ sub BUILD {
         );
 
         typemap 'Upset::Adapter::Template' => infer;
+        typemap 'Upset::Adapter::Schedule' => infer;
         typemap 'Upset::Adapter::Members' => infer(
             parameters => { form => { optional => 0 } },
         );
