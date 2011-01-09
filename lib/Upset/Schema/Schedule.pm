@@ -8,6 +8,13 @@ use Upset::Schema::Schedule::Event;
 
 with 'MooseX::Clone';
 
+has 'note' => (
+    is        => 'rw',
+    isa       => 'Str',
+    predicate => 'has_note',
+    clearer   => 'clear_note',
+);
+
 has '_buckets' => (
     traits   => [ 'Hash', 'Clone' ],
     is       => 'ro',

@@ -15,7 +15,7 @@ has 'title' => (
     is          => 'ro',
     isa         => Str,
     required    => 1,
-    description => { label => 'Title or Position' },
+    description => { label => 'Title or Position', size => 35 },
 );
 
 has 'description' => (
@@ -23,7 +23,7 @@ has 'description' => (
     is       => 'ro',
     isa      => Str,
     required => 1,
-    description => { label => "Short Description" },
+    description => { label => "Description", size => 35 },
 );
 
 has ['long_description', 'requirements'] => (
@@ -31,7 +31,7 @@ has ['long_description', 'requirements'] => (
     is          => 'ro',
     isa         => Str,
     required    => 1,
-    description => { type => 'Textarea', rows => 8  },
+    description => { type => 'Textarea', rows => 8, cols => 40},
 );
 
 has 'contact' => (
@@ -39,15 +39,14 @@ has 'contact' => (
     is       => 'ro',
     isa      => Str,
     required => 1,
-    description => { label => 'Contact Person' },
+    description => { label => 'Contact Person', size => 35},
 );
 
 has 'contact_phone' => (
-    traits   => ['MooseX::MetaDescription::Meta::Trait'],
-    is       => 'ro',
-    isa      => Str,
-    required => 1,
-    description => { label => 'Contact Number' },
+    traits      => ['MooseX::MetaDescription::Meta::Trait'],
+    is          => 'ro',
+    isa         => Str,
+    description => { label => 'Contact Number', size => 35},
 );
 
 has 'contact_email' => (
@@ -55,7 +54,7 @@ has 'contact_email' => (
     is          => 'ro',
     isa         => Str,
     required    => 1,
-    description => { constraints => [ 'Email' ], label => 'Email Address' },
+    description => { constraints => ['Email'], label => 'Email Address', size => 35 },
 );
 
 has 'approved' => (

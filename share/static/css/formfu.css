@@ -19,8 +19,9 @@
 }
 
 .formfu .recaptcha {
-	margin-top: 2ex;
+	margin-top: 3ex;
 	margin-bottom: 2ex;
+	margin-left: 130px;
 }
 
 .formfu .is_public {

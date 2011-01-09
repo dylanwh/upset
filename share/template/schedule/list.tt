@@ -1,12 +1,37 @@
 [% WRAPPER page.tt title = "Meetings" %]
 
+<h1>SLUG Meetings</h1>
+
+<p class="block"> SLUG currently holds two regular, monthly meetings. The first
+of these is the Tampa meeting, which is held in HCC during the second week of
+the month. This is our oldest meeting, and the one with the best meeting room.
+</p>
+
+<p class="block">' The second meeting is called the "Pinellas", "Pinellas Unix
+People", or the "PUP" meeting.  It is held on the third wednesday of the month,
+at the Pinellas Park public library.  </p>
+
+<p class="block"> Tampa and PUP meetings have several common elements. There is
+usually a presentation, from the simple to the indepth.  Presenters have access
+to a projector at both meetings. Presentations are between 20 to 60 minutes.
+</p>
+
+<p class="block"> Both meetings have open discussion/QA/installfest period. For
+PUP, this is the first hour.  For Tampa, this is usually the second hour.  </p>
+
+<p class="block">
+Below is a list of upcomming meetings. In the future, this website will provide
+an ical export, and will have conduits to google calendar and facebook.
+</p>
+
+
 [% FOREACH event IN events %]
 <a name="#[% event.name %]"></a>
 <h1>
 	[% IF event.has_title %]
-		[% event.title %]
+		[% event.title | html %]
 	[% ELSE %]
-		[% event.name | ucfirst %]
+		[% event.name | ucfirst | html %]
 	[% END %]
 	- 
 	[% 

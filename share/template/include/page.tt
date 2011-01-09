@@ -66,9 +66,6 @@
                     </div>
                 </div>
 
-                [% IF status_msg %]
-                <h1>[% status_msg %]</h1>
-                [% END %]
                 <!-- Content blocks start -->
                 [% content %]
 

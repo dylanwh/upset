@@ -22,6 +22,10 @@ Suncoast Linux Users Group (SLUG) Meeting Schedule
 
 HEAD
 
+if ($schedule->has_note) {
+    print "*** NOTE: ", join("\n***       ", split(/\n/, $schedule->note)), "\n\n";
+}
+
 my $stars = 58;
 for my $event (@events) {
     my $name = uc $event->name;
@@ -54,4 +58,10 @@ for my $event (@events) {
     print "        $_\n" for split(/\n/, $event->location);
     print "\n";
 }
+
+
+=head1 NAME
+
+schedule.pl
+
 
