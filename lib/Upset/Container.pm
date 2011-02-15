@@ -15,7 +15,6 @@ use Upset::Adapter::Jobs;
 use Upset::Adapter::Schedule;
 use Upset::Form;
 
-
 use Bread::Board;
 use Bread::Board::LifeCycle::Singleton::WithParameters;
 
@@ -29,10 +28,11 @@ sub BUILD {
     container $self => as {
         service template_path => ['share/template', 'share/template/include'];
 
-        service model_dsn     => 'bdb:dir=data';
+        service model_dsn     => 'dbi:SQLite:upset.db';
         service model_args => {
             create          => 1,
-            allow_classes => [ 'DateTime::Span', 'DateTime::SpanSet', 'Set::Infinite::_recurrence'],
+            serializer      => 'yaml',
+            allow_classes   => [ 'DateTime::Span' ],
         };
         service confname      => 'upset';
         service passwd        => 'passwd';
@@ -72,6 +72,26 @@ sub BUILD {
             parameters   => ['app'],
             lifecycle    => 'Singleton::WithParameters',
         );
+
+        service 'logger' => (
+            block => sub {
+                require Log::Dispatch;
+                Log::Dispatch->new(
+                    outputs => [
+                        [ 
+                            'File',
+                            min_level => 'debug',
+                            filename  => 'logs/debug.log',
+                            mode      => '>>',
+                            newline   => 1,
+                        ]
+                    ],
+                ),
+            }
+        );
+
+        Moose::Util::TypeConstraints::class_type('Log::Dispatch');
+        typemap 'Log::Dispatch' => 'logger';
 
         typemap 'Upset::Config' => 'config';
         typemap 'Upset::Form'   => 'form';

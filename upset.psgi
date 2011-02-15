@@ -4,12 +4,14 @@ use Plack::Builder;
 use Plack::App::File;
 use Upset::Container;
 
-my $c   = Upset::Container->new;
-my $app = $c->resolve(type => 'Upset::App');
+my $c      = Upset::Container->new;
+my $logger = $c->resolve(type => 'Log::Dispatch');
+my $app    = $c->resolve(type => 'Upset::App');
 
 $app->establish_routes($c);
 
 builder {
+    enable "LogDispatch", logger => $logger;
     enable "Plack::Middleware::XSendfile";
     enable 'Plack::Middleware::Session';
     mount "/favicon.ico" => Plack::App::File->new(file => 'share/favicon.ico');
