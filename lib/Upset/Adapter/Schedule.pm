@@ -27,16 +27,26 @@ around 'call' => sub {
 };
 
 # TODO: Cache
-sub events {
+sub vars {
     my ($self) = @_;
 
-    return [ $self->model->schedule->next_events( DateTime->now ) ];
+    my $schedule = $self->model->schedule;
+    return (
+        events   => [ $schedule->next_events( DateTime->now ) ],
+        has_note => $schedule->has_note,
+        note     => $schedule->note,
+    );
 }
 
 sub GET_list {
     my ($self, $req) = @_;
 
-    return $self->render($req, { file => 'schedule/list.tt', events => $self->events });
+    return $self->render(
+        $req => {
+            file => 'schedule/list.tt',
+            $self->vars,
+        }
+    );
 }
 
 

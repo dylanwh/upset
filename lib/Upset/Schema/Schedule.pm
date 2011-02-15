@@ -3,10 +3,9 @@ use Moose;
 use namespace::autoclean;
 
 use MooseX::Params::Validate;
+
 use Upset::Schema::Schedule::Bucket;
 use Upset::Schema::Schedule::Event;
-
-with 'MooseX::Clone';
 
 has 'note' => (
     is        => 'rw',
@@ -16,7 +15,7 @@ has 'note' => (
 );
 
 has '_buckets' => (
-    traits   => [ 'Hash', 'Clone' ],
+    traits   => [ 'Hash' ],
     is       => 'ro',
     isa      => 'HashRef[Upset::Schema::Schedule::Bucket]',
     init_arg => 'buckets',
@@ -54,11 +53,11 @@ sub next_events {
            $self->buckets;
 }
 
-sub all_events {
+sub events {
     my $self = shift;
 
     return sort { $a->compare($b) }
-           map     { $_->events } 
+           map  { $_->events } 
            $self->buckets;
 }
 

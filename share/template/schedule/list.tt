@@ -24,7 +24,6 @@ Below is a list of upcomming meetings. In the future, this website will provide
 an ical export, and will have conduits to google calendar and facebook.
 </p>
 
-
 [% FOREACH event IN events %]
 <a name="#[% event.name %]"></a>
 <h1>

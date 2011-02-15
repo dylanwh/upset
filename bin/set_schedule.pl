@@ -22,7 +22,7 @@ my $schedule = $model->schedule;
 my $pinellas = do {
     # third wednesday of every month
     my $duration = DateTime::Duration->new( hours => 2 );
-    my $set      = DateTime::Event::Recurrence->monthly( weeks => 3, days  => 3)
+    my $set      = DateTime::Event::Recurrence->monthly( weeks => 2, days  => 3)
                                               ->map( sub { $_->clone->set( hour => 18 ) } );
 
     DateTime::SpanSet->from_set_and_duration(
@@ -34,7 +34,7 @@ my $pinellas = do {
 my $tampa = do {
     # second thursday of every month
     my $set = DateTime::Event::Recurrence->monthly(
-        weeks => 2,
+        weeks => 1,
         days  => 4,
     )->map( sub { $_->clone->set( hour => 19 ) } );
     my $duration = DateTime::Duration->new( hours => 2 );

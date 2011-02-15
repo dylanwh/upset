@@ -23,7 +23,7 @@ Suncoast Linux Users Group (SLUG) Meeting Schedule
 HEAD
 
 if ($schedule->has_note) {
-    print "*** NOTE: ", join("\n***       ", split(/\n/, $schedule->note)), "\n\n";
+    print "NOTE: ", $schedule->note, "\n\n";
 }
 
 my $stars = 58;
