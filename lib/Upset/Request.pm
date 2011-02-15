@@ -24,6 +24,12 @@ sub arguments {
     return @{ $self->env->{'plack.router.match.args'} };
 }
 
+sub session {
+    my ($self) = @_;
+
+    return $self->env->{'psgix.session'};
+}
+
 sub uri_for {
     my ($self, $name, $path, $args) = @_;
     $path ||= {};

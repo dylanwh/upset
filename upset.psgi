@@ -11,6 +11,7 @@ $app->establish_routes($c);
 
 builder {
     enable "Plack::Middleware::XSendfile";
+    enable 'Plack::Middleware::Session';
     mount "/favicon.ico" => Plack::App::File->new(file => 'share/favicon.ico');
     enable "Plack::Middleware::Static" => (
         path => qr{^/static/}, 
