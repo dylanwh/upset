@@ -17,9 +17,15 @@ extends 'KiokuX::Model';
 
 sub init {
     my $self    = shift;
-    $self->store(MEMBERS() => set());
-    $self->store(JOBS()    => set());
-    $self->store(SCHEDULE() => Upset::Schema::Schedule->new);
+
+    $self->_initialize_object(MEMBERS,  set());
+    $self->_initialize_object(JOBS,     set());
+    $self->_initialize_object(SCHEDULE, Upset::Schema::Schedule->new);
+}
+
+sub _initialize_object {
+    my ($self, $key, $val) = @_;
+    $self->store($key, $val) unless $self->lookup($key);
 }
 
 sub add_member {
@@ -31,7 +37,7 @@ sub add_member {
     my $members = $self->lookup(MEMBERS);
     $self->store_nonroot($member);
     $members->insert($member);
-    $self->update( $members );
+    $self->update($members);
 }
 
 sub add_job {
