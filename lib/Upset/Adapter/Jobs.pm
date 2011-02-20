@@ -5,18 +5,9 @@ use namespace::autoclean;
 use Upset::Schema::Job;
 
 extends 'Upset::Adapter';
-
-has 'model' => (
-    is       => 'ro',
-    isa      => 'Upset::Model',
-    required => 1,
-);
-
-has 'view' => (
-    is       => 'ro',
-    isa      => 'Upset::View::Template',
-    required => 1,
-    handles => ['render'],
+with (
+    'Upset::Role::Adapter::Transactional',
+    'Upset::Role::Adapter::TemplateView',
 );
 
 has 'form' => (
@@ -30,30 +21,6 @@ has 'config' => (
     isa      => 'Upset::Config',
     required => 1,
 );
-
-=pod
-
-sub BUILD {
-    my $self   = shift;
-    my $form   = $self->form;
-    my $config = $self->config;
-
-    {   
-        type        => 'reCAPTCHA',
-        name        => 'recaptcha',
-        public_key  => $config->get( key => 'recaptcha.public-key' ),
-        private_key => $config->get( key => 'recaptcha.private-key' ),
-    },
-}
-
-=cut
-
-around 'call' => sub {
-    my $method = shift;
-    my $self   = shift;
-    my $scope = $self->model->new_scope;
-    $self->$method(@_);
-};
 
 sub jobs {
     my ($self, %param) = @_;

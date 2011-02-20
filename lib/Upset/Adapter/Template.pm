@@ -3,12 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 extends 'Upset::Adapter';
-
-has 'view' => (
-    is       => 'ro',
-    isa      => 'Upset::View::Template',
-    required => 1,
-);
+with 'Upset::Role::Adapter::TemplateView';
 
 has 'default_file' => (
     is      => 'ro',
@@ -21,7 +16,7 @@ sub GET {
     $file //= $self->default_file;
 
     $file =~ s/\.html$/.tt/;
-    return $self->view->render( $req, { file => $file });
+    return $self->render( $req, { file => $file });
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -5,48 +5,24 @@ use namespace::autoclean;
 use Upset::Schema::Schedule;
 
 extends 'Upset::Adapter';
-
-has 'model' => (
-    is       => 'ro',
-    isa      => 'Upset::Model',
-    required => 1,
+with (
+    'Upset::Role::Adapter::Transactional',
+    'Upset::Role::Adapter::TemplateView',
 );
 
-has 'view' => (
-    is       => 'ro',
-    isa      => 'Upset::View::Template',
-    required => 1,
-    handles => ['render'],
-);
-
-around 'call' => sub {
-    my $method = shift;
-    my $self   = shift;
-    my $scope = $self->model->new_scope;
-    $self->$method(@_);
-};
-
-# TODO: Cache
-sub vars {
+sub _build_template_vars {
     my ($self) = @_;
 
     my $schedule = $self->model->schedule;
-    return (
-        events   => [ $schedule->next_events( DateTime->now ) ],
-        has_note => $schedule->has_note,
-        note     => $schedule->note,
-    );
+    return +{
+        events => [ $schedule->next_events( DateTime->now ) ],
+    };
 }
 
 sub GET_list {
     my ($self, $req) = @_;
 
-    return $self->render(
-        $req => {
-            file => 'schedule/list.tt',
-            $self->vars,
-        }
-    );
+    return $self->render( $req => { file => 'schedule/list.tt' });
 }
 
 

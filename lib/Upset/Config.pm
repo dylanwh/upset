@@ -6,7 +6,7 @@ use Path::Class;
 
 extends 'Config::GitLike';
 
-sub dir_file { $_[0]->confname . ".ini" }
+sub dir_file { $_[0]->confname }
 
 sub load_dirs {
     my ($self, $path) = @_;

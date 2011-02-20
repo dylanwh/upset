@@ -6,12 +6,7 @@ use namespace::autoclean;
 use Upset::Request;
 
 extends 'Plack::Component';
-
-has 'name' => (
-    is         => 'ro',
-    isa        => 'Str',
-    lazy_build => 1,
-);
+with 'Upset::Role::Adapter';
 
 sub _build_name {
     my $self = shift;
@@ -22,19 +17,6 @@ sub _build_name {
     }
     return $name;
 }
-
-sub call {
-    my $self   = shift;
-    my $req    = Upset::Request->new(shift);
-    my $method = $req->action ? $req->method . '_' . $req->action : $req->method;
-
-    return $req->new_response(405) unless $self->can($method);
-    my $resp = $self->$method($req, $req->arguments);
-
-    return $resp->finalize;
-}
-
-1;
 
 __PACKAGE__->meta->make_immutable;
 1;

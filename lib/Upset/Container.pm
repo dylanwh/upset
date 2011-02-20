@@ -12,6 +12,7 @@ use Upset::View::Template;
 use Upset::Adapter::Template;
 use Upset::Adapter::Members;
 use Upset::Adapter::Jobs;
+use Upset::Adapter::User;
 use Upset::Adapter::Schedule;
 use Upset::Form;
 
@@ -27,15 +28,14 @@ sub BUILD {
 
     container $self => as {
         service template_path => ['share/template', 'share/template/include'];
-
+        service confname      => 'etc/upset.ini';
+        service passwd        => 'etc/passwd';
         service model_dsn     => 'dbi:SQLite:upset.db';
         service model_args => {
-            create          => 1,
-            serializer      => 'yaml',
-            allow_classes   => [ 'DateTime::Span' ],
+            create        => 1,
+            serializer    => 'yaml',
+            allow_classes => [ 'DateTime::Span' ],
         };
-        service confname      => 'upset';
-        service passwd        => 'passwd';
 
         service config => (
             class        => 'Upset::Config',
@@ -113,6 +113,7 @@ sub BUILD {
 
         typemap 'Upset::Adapter::Template' => infer;
         typemap 'Upset::Adapter::Schedule' => infer;
+        typemap 'Upset::Adapter::User' => infer;
         typemap 'Upset::Adapter::Members' => infer(
             parameters => { form => { optional => 0 } },
         );

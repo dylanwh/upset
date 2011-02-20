@@ -65,6 +65,10 @@ sub establish_routes {
         defaults => { action          => 'list' },
     );
 
+    $router->add_route( '/login',
+        target   => $c->resolve( type => 'Upset::Adapter::User' ),
+        defaults => { action          => 'login' },
+    );
 }
 
 __PACKAGE__->meta->make_immutable;

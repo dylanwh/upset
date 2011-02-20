@@ -5,18 +5,9 @@ use namespace::autoclean;
 use Upset::Schema::Member;
 
 extends 'Upset::Adapter';
-
-has 'model' => (
-    is       => 'ro',
-    isa      => 'Upset::Model',
-    required => 1,
-);
-
-has 'view' => (
-    is       => 'ro',
-    isa      => 'Upset::View::Template',
-    required => 1,
-    handles => ['render'],
+with (
+    'Upset::Role::Adapter::Transactional',
+    'Upset::Role::Adapter::TemplateView',
 );
 
 has 'form' => (
