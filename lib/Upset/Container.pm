@@ -34,7 +34,7 @@ sub BUILD {
         service model_args => {
             create        => 1,
             serializer    => 'yaml',
-            allow_classes => [ 'DateTime::Span' ],
+            allow_classes => [ 'DateTime::Span', 'Set::Infinite::_recurrence' ],
         };
 
         service config => (

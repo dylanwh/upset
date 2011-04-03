@@ -22,10 +22,6 @@ Suncoast Linux Users Group (SLUG) Meeting Schedule
 
 HEAD
 
-if ($schedule->has_note) {
-    print "NOTE: ", $schedule->note, "\n\n";
-}
-
 my $stars = 58;
 for my $event (@events) {
     my $name = uc $event->name;

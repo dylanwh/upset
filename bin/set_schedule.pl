@@ -62,7 +62,7 @@ $schedule->bucket(
     ),
 );
 
-$schedule->bucket(
+0 and $schedule->bucket(
     tampa => Upset::Schema::Schedule::Bucket->new(
         events => [
             Upset::Schema::Schedule::Event->new(

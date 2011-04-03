@@ -11,13 +11,15 @@ my $app    = $c->resolve(type => 'Upset::App');
 $app->establish_routes($c);
 
 builder {
-    enable "LogDispatch", logger => $logger;
-    enable "Plack::Middleware::XSendfile";
-    enable 'Plack::Middleware::Session';
-    mount "/favicon.ico" => Plack::App::File->new(file => 'share/favicon.ico');
-    enable "Plack::Middleware::Static" => (
+    enable 'LogDispatch', logger => $logger;
+    enable 'XSendfile';
+    enable 'Session';
+    enable "Static" => (
         path => qr{^/static/}, 
         root => 'share',
     );
+    mount  '/favicon.ico' => Plack::App::File->new(file => 'share/favicon.ico');
+
+    enable '+Upset::App::Remap';
     mount '/' => $app;
 };

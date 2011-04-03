@@ -1,8 +1,8 @@
-#!/usr/bin/env perl
-use strict;
-use warnings;
-use Plack::Request;
-use Plack::Response;
+package Upset::App::Remap;
+use Moose;
+use MooseX::NonMoose;
+
+extends 'Plack::Middleware';
 
 my %remap = (
     '/history.php'  => '/page/history.html',
@@ -15,8 +15,9 @@ my %remap = (
     '/treasury.php' => '/page/treasury.html',
 );
 
-my $app = sub {
-    my $req = Plack::Request->new(shift);
+sub call {
+    my ($self, $env) = @_;
+    my $req = Plack::Request->new($env);
     my $path = $req->path;
 
     if ($remap{$path}) {
@@ -24,10 +25,16 @@ my $app = sub {
         $resp->location($remap{$path});
         return $resp->finalize;
     }
-    else {
+    elsif ($path =~ /\.php$/) {
         my $resp = $req->new_response(302);
         $path =~ s/\.php$/.html/g;
         $resp->location("/page$path");
         return $resp->finalize;
     }
+    else {
+        return $self->app->( $env );
+    }
 }
+
+__PACKAGE__->meta->make_immutable;
+1;
