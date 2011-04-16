@@ -32,7 +32,12 @@ sub add_event {
         $self->bucket($name)->add_event($event);
     }
     else {
-        $self->bucket($name => Upset::Schema::Schedule::Bucket->new(events => [ $event ]));
+        $self->bucket(
+            $name => Upset::Schema::Schedule::Bucket->new(
+                name   => $event->name,
+                events => [ $event ],
+            )
+        );
     }
 }
 
@@ -54,7 +59,5 @@ sub events {
            $self->buckets;
 }
 
-
 __PACKAGE__->meta->make_immutable;
 1;
-

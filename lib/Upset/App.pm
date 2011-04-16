@@ -73,4 +73,3 @@ sub establish_routes {
 
 __PACKAGE__->meta->make_immutable;
 1;
-

@@ -1,9 +1,9 @@
-[% WRAPPER page.tt title = "Login" %]
+[% WRAPPER 'page.tt' title = "Login" %]
 
 <div class="block">
 	<form method="post" action="[% request.uri_for('User', action = 'login') %]">
-	<input name="openid" type="text" size="14" />
-	<input type="submit" value="Login with OpenID" />
+		<input name="openid" type="text" size="14" />
+		<input type="submit" value="Login with OpenID" />
 	</form>
 </div>
 

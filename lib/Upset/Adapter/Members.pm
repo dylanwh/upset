@@ -16,7 +16,7 @@ has 'form' => (
     required => 1,
 );
 
-sub GET {
+sub GET_default {
     my ($self, $req) = @_;
 
     $self->render($req => { file => 'members/list.tt' });

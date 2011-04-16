@@ -8,7 +8,7 @@ with (
     'Upset::Role::Adapter::TemplateView',
 );
 
-sub GET {
+sub GET_login {
     my ($self, $req) = @_;
     $self->render($req => { file => 'user/login.tt' });
 }

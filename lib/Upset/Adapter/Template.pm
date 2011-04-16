@@ -11,7 +11,7 @@ has 'default_file' => (
     default => 'index.html',
 );
 
-sub GET {
+sub GET_default {
     my ($self, $req, $file) = @_;
     $file //= $self->default_file;
 

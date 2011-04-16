@@ -13,7 +13,7 @@ has 'name' => (
 sub call {
     my $self   = shift;
     my $req    = Upset::Request->new(shift);
-    my $method = $req->action ? $req->method . '_' . $req->action : $req->method;
+    my $method = $req->method . '_' . $req->action;
 
     return $req->new_response(405)->finalize unless $self->can($method);
     my $resp = $self->$method($req, $req->arguments);

@@ -35,7 +35,7 @@ sub jobs {
     ];
 }
 
-sub GET {
+sub GET_default {
     my ($self, $req) = @_;
     $self->render($req => { file => 'jobs/index.tt', jobs => $self->jobs(approved => 1) });
 }

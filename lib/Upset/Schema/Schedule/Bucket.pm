@@ -12,6 +12,12 @@ use DateTime::Event::Recurrence; # so kiokudb can use the deserialized coderefs.
 
 with 'MooseX::Clone';
 
+has 'name' => (
+    is       => 'ro',
+    isa      => 'Str',
+    required => 1,
+);
+
 has '_events' => (
     traits   => [ 'Array', 'Clone' ],
     is       => 'ro',
@@ -21,8 +27,9 @@ has '_events' => (
     handles  => {
         events        => 'elements',
         add_event     => 'push',
+        has_events    => 'count',
         event         => 'get',
-        _find_event   => 'first',
+        _first_event   => 'first',
         _sort_events  => [ 'sort_in_place', sub { $_[0]->compare( $_[1] ) } ],
     },
 );
@@ -35,7 +42,7 @@ sub next_event {
     my $self = shift;
     my ($now) = pos_validated_list( \@_, { isa => 'DateTime' } );
 
-    return $self->_find_event( sub { $_->follows($now) } );
+    return $self->_first_event( sub { $_->follows($now) } );
 }
 
 __PACKAGE__->meta->make_immutable;
