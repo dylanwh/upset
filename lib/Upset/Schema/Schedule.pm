@@ -32,12 +32,9 @@ sub add_event {
         $self->bucket($name)->add_event($event);
     }
     else {
-        $self->bucket(
-            $name => Upset::Schema::Schedule::Bucket->new(
-                name   => $event->name,
-                events => [ $event ],
-            )
-        );
+        my $bucket = Upset::Schema::Schedule::Bucket->new( name => $event->name );
+        $bucket->add_event($event);
+        $self->bucket( $name => $bucket );
     }
 }
 

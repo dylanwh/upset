@@ -9,6 +9,7 @@ use Upset::Schema::Types ':all';
 
 use DateTime::SpanSet;
 use DateTime::Event::Recurrence; # so kiokudb can use the deserialized coderefs... eew
+use List::MoreUtils 'first_value';
 
 with 'MooseX::Clone';
 
@@ -18,31 +19,42 @@ has 'name' => (
     required => 1,
 );
 
-has '_events' => (
-    traits   => [ 'Array', 'Clone' ],
-    is       => 'ro',
-    isa      => ArrayRef[Event],
-    init_arg => 'events',
-    default  => sub { [] },
-    handles  => {
-        events        => 'elements',
-        add_event     => 'push',
-        has_events    => 'count',
-        event         => 'get',
-        _first_event   => 'first',
-        _sort_events  => [ 'sort_in_place', sub { $_[0]->compare( $_[1] ) } ],
+has 'events' => (
+    traits   => [ 'Hash', 'Clone' ],
+    reader   => '_events',
+    isa      => HashRef[Event],
+    init_arg => undef,
+    default  => sub { +{} },
+    handles => {
+        _values  => 'values',
+        _set     => 'set',
+        _delete  => 'delete',
     },
 );
 
-sub BUILD { shift->_sort_events }
+sub events {
+    my $self = shift;
 
-after 'add_event' => sub { shift->_sort_events };
+    return sort { $a->compare($b) } $self->_values;
+}
+
+sub add_event {
+    my ($self, $event) = @_;
+
+    $self->_set($event->slot => $event);
+}
+
+sub remove_event {
+    my ($self, $event) = @_;
+
+    $self->_delete($event->slot);
+}
 
 sub next_event {
     my $self = shift;
     my ($now) = pos_validated_list( \@_, { isa => 'DateTime' } );
 
-    return $self->_first_event( sub { $_->follows($now) } );
+    return first_value { $_->follows($now) } $self->events;
 }
 
 __PACKAGE__->meta->make_immutable;

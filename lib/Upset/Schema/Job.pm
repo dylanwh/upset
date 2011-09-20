@@ -67,6 +67,7 @@ has 'timestamp' => (
     is      => 'ro',
     isa     => 'DateTime',
     default => sub { DateTime->now },
+    handles => [qw[ ymd ]],
 );
 
 __PACKAGE__->meta->make_immutable;

@@ -9,7 +9,7 @@
 		[% IF seek_approval %]
 		<input type="checkbox" value="[% job.uuid %]" name="jobs" />
 		[% END %]
-		[% job.item.title %]
+		[% job.item.title %] ([% job.item.ymd %])
 	</h2>
 	<div class="block">
 		<table class="jobs_approve">

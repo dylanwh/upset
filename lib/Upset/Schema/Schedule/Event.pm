@@ -8,7 +8,7 @@ use MooseX::Types::Moose ':all';
 use Carp;
 use DateTime::Span;
 
-with 'MooseX::Clone';
+with 'Upset::Schema::Role::ID';
 
 has 'name' => (
     isa      => Str,
@@ -23,14 +23,12 @@ has 'title' => (
 );
 
 has 'topic' => (
-    traits    => ['NoClone'],
     isa       => Str,
     is        => 'ro',
     predicate => 'has_topic',
 );
 
 has 'content' => (
-    traits    => ['NoClone'],
     isa       => Str,
     is        => 'ro',
     predicate => 'has_content',
@@ -48,6 +46,18 @@ has 'span' => (
     required => 1,
 );
 
+has 'timestamp' => (
+    is      => 'ro',
+    isa     => 'DateTime',
+    default => sub { DateTime->now },
+);
+
+sub slot {
+    my $self = shift;
+
+    return sprintf "%s/%s-%s", $self->name, $self->span->start, $self->span->end;
+}
+
 sub follows {
     my $self = shift;
     my ($date) = pos_validated_list(\@_, { isa => 'DateTime' });
@@ -63,5 +73,4 @@ sub compare {
 }
 
 __PACKAGE__->meta->make_immutable;
-
 1;
