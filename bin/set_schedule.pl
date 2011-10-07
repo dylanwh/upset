@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
 use Upset;
 use Plack::Builder;
 use Plack::App::File;
@@ -18,6 +20,8 @@ my $c = Upset::Container->new;
 my $model    = $c->resolve(type => 'Upset::Model');
 my $scope    = $model->new_scope;
 my $schedule = $model->schedule;
+
+$schedule->clear;
 
 my %template = (
     pinellas => {

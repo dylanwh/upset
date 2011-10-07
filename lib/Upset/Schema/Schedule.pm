@@ -17,6 +17,7 @@ has '_buckets' => (
         bucket     => 'accessor',
         has_bucket => 'exists',
         buckets    => 'values',
+        clear      => 'clear',
     },
 );
 
