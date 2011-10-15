@@ -56,7 +56,7 @@ sub POST_publish {
     if ($form->process($req)) {
         my $job = $form->to_object;
         $model->add_job($job);
-        $self->GET($req);
+        $self->GET_default($req);
     }
     else {
         $self->render($req => { file => 'jobs/publish.tt', form => $self->form });

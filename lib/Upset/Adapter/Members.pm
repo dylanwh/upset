@@ -42,7 +42,7 @@ sub POST_join {
         $self->render( $req => { file => 'members/thanks.tt' });
     }
     else {
-        $self->GET($req);
+        $self->GET_default($req);
     }
 }
 
