@@ -38,17 +38,37 @@ my %template = (
         name     => 'tampa',
         location => join( "\n",
             "HDR",
+            "Suite 400 (4th floor)",
             "5426 Bay Center Drive",
-            "Tampa, FL",
+            "Tampa, FL 33609",
+            "After 7:00 PM you may need to call Cliff at 727-495-5981"
         ),
-    }
+    },
+    hack => { 
+        name => 'Hacking Session',
+        location => join("\n",
+            "Panera Bread",
+            "10801 Starkey Road",
+            "Largo, Florida 33777",
+        ),
+        content => join("\n",
+            "Definition: (2) hack [very common] ",
+            "1. n. Originally, a quick job that produces what is needed, but not well. ",
+            "2. n. An incredibly good, and perhaps very time-consuming, piece of work that produces exactly",
+            "what is needed. ",
+            "",
+            "Come join your fellow geeks for an afternoon of social coding.",
+        ),
+    },
 );
 
 my %span_set = (
-    pinellas => (sub {
+    pinellas => sub {
         # third wednesday of every month
         my $duration = DateTime::Duration->new( hours => 2 );
         my $set = DateTime::Event::Recurrence->monthly( 
+            start => DateTime->new(year => 2011, month => 12, day => 21),
+            week_start_day => '1mo',
             weeks => 3,
             days  => 3,
         )->map( sub { $_->clone->set( hour => 18 ) } );
@@ -57,12 +77,29 @@ my %span_set = (
             set      => $set,
             duration => $duration
         );
-    })->(),
-    tampa => do {
-        # second wednesday of every month
+    },
+    hack  => sub {
+        my $duration = DateTime::Duration->new(hours => 3, minutes => 30);
         my $set = DateTime::Event::Recurrence->monthly(
+            start => DateTime->new(year => 2011, month => 12, day => 10),
+            week_start_day => '1mo',
+            interval => 3,
+            weeks => 1,
+            days => 'sa',
+        )->map( sub { $_->clone->set( hour => 13 ) } );
+
+        DateTime::SpanSet->from_set_and_duration(
+            set      => $set,
+            duration => $duration
+        );
+    },
+    tampa => sub {
+        # second tuesday of every month
+        my $set = DateTime::Event::Recurrence->monthly(
+            start => DateTime->new(year => 2011, month => 12, day => 13),
+            week_start_day => '1mo',
             weeks => 2,
-            days  => 3,
+            days  => 2,
         )->map( sub { $_->clone->set( hour => 19 ) } );
         my $duration = DateTime::Duration->new( hours => 2 );
 
@@ -73,15 +110,20 @@ my %span_set = (
     },
 );
 
-my $now = DateTime->now;
+
 foreach my $name (keys %template) {
-    my $event = Upset::Schema::Schedule::Event->new(
-        %{ $template{$name} },
-        span => $span_set{$name}->next($now),
-    );
-    $schedule->add_event( $event );
-    my $span = $span_set{$name}->next($now);
-    print "[$now] $name ", $span->start, "\n";
+    my $now = DateTime->now;
+    for (1..3) {
+        my $span  = $span_set{$name}->()->next($now);
+        my $event = Upset::Schema::Schedule::Event->new(
+            %{ $template{$name} },
+            span => $span,
+        );
+        $schedule->add_event( $event );
+        print "[$now] $name ", $span->start, "\n";
+
+        $now = $span->end;
+    }
 }
 
 

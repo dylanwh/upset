@@ -9,13 +9,15 @@ use Plack::App::File;
 
 use Upset::Container;
 
+chdir "$FindBin::Bin/..";
+
 my $c = Upset::Container->new;
 
 my $model    = $c->resolve( type => 'Upset::Model' );
 my $scope    = $model->new_scope;
 my $schedule = $model->schedule;
 
-my @events = $schedule->next_events(DateTime->now);
+my @events = $schedule->next_events( @ARGV ? DateTime->from_epoch(epoch => shift) : DateTime->now);
 
 print <<HEAD;
 ==================================================

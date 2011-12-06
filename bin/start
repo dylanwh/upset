@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+VERSION=${1:-0.04}
+cd /srv/www/slug/Upset-$VERSION
+plackup -Mlocal::lib=/srv/www/slug/perl \
+	    -Ilib \
+	    -S /tmp/upset-$VERSION.sock \
+	    -s FCGI \
+	    --nproc 3 \
+	    upset.psgi &
+
+echo $! > upset.pid

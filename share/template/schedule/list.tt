@@ -3,13 +3,13 @@
 <h1>SLUG Meetings</h1>
 
 <p class="block"> SLUG currently holds two regular, monthly meetings. The first
-of these is the Tampa meeting, which is held in HCC during the second week of
+of these is the Tampa meeting, which is held at HDR during the second week of
 the month. This is our oldest meeting, and the one with the best meeting room.
 </p>
 
 <p class="block">' The second meeting is called the "Pinellas", "Pinellas Unix
-People", or the "PUP" meeting.  It is held on the third wednesday of the month,
-at the Pinellas Park public library.  </p>
+People", or the "PUP" meeting.  It is <b>always</b> held on the third wednesday of the month,
+at the Pinellas Park public library. </p>
 
 <p class="block"> Tampa and PUP meetings have several common elements. There is
 usually a presentation, from the simple to the indepth.  Presenters have access
@@ -39,13 +39,18 @@ an ical export, and will have conduits to google calendar and facebook.
 </h2>
 <p class="block">
 <strong>Time:</strong> 
-[% event.span.start.strftime("%X") %] - 
-[% event.span.end.strftime("%X") %]
+[% event.span.start.strftime("%I:%M%P") %] - 
+[% event.span.end.strftime("%I:%M%P") %]
 </p>
 <p class="block">
 <strong>Location:</strong> <br />
 [% event.location | html | html_line_break  %]
 </p>
+[% IF event.has_content %]
+<p class="block">
+[% event.content | html | html_line_break %]
+</p>
+[% END %]
 [% END %]
 
 [% END %]
