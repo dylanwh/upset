@@ -19,6 +19,11 @@ sub GET_default {
     return $self->render( $req, { file => $file });
 }
 
+sub GET_hack {
+    my ($self, $req) = @_;
+    $self->GET_default($req, 'hack.tt');
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
 

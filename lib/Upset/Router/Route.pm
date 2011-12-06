@@ -3,7 +3,6 @@ use Moose;
 use namespace::autoclean;
 
 use MooseX::Types::Moose ':all';
-use MooseX::Types::Structured 'Dict';
 
 extends 'Path::Router::Route';
 
@@ -14,7 +13,7 @@ has 'name' => (
 );
 
 has '+defaults' => (
-    isa     => Dict [ action => Str ],
+    isa     => HashRef,
     default => sub { +{ action => 'default' } },
 );
 

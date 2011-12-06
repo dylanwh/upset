@@ -16,6 +16,11 @@ sub establish_routes {
         target   => $c->resolve(type => 'Upset::Adapter::Template'),
     );
 
+    $router->add_route('/hack',
+        target => $c->resolve(type => 'Upset::Adapter::Template'),
+        defaults => { page => 'hack.tt', action => 'hack' }
+    );
+
     $router->add_route('/page/:page',
         target => $c->resolve(type => 'Upset::Adapter::Template'),
     );

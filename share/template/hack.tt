@@ -1,0 +1,61 @@
+[% WRAPPER "page.tt" title = "SLUG Home Page" %]
+
+<h1>Hacking Session</h1>
+
+    <p class="block">
+    	The next hacking session is <b>December 10th, 2011</b> at Panera Bread near bardmoor.
+    	See the <a href="[% request.uri_for('Schedule', action = 'list') %]">meetings</a> page for details.
+    </p>
+
+    <a name="synopsis"></a>
+    <h2>Synopsis</h2>
+    <p class="block">Hacking Sessions are an excuse to hang out a coffee shop (or bakery) with
+    other geeks of the programming persuasion and write code.
+    Originally we were going to limit this to "new projects", but as that is unreasonable,
+    anything goes. However, it would be cool if you posted links (to mailing lists/facebook/twitter/etc)
+    of what you did during the session.
+    </p>
+
+    <a name="ideas"></a>
+    <h2>Project Ideas</h2>
+    <div class="block">
+    <ol>
+        <li>A presentation/talk submission system (that could be integrated into Upset)</li>
+        <li>An RSS Feed for the SLUG mailing list. Dylan wrote one a while
+        ago, but it was sort of hacky. Chotchki attempted to write one at the
+        first hacking session but it was unreleased and unfinished.</li>
+    </ol>
+	</div>
+
+    <a name="teams"></a>
+    <h2>Teams</h2>
+    <p class="block">For the sake of this event, we refer to "teams", which might only have one member,
+    but may also have other members. Each team must have a unique, humorous name.
+    </p>
+
+    <p class="block">Teams should be decided by language/toolset, and should choose
+    <strong>one</strong> and only <strong>one</strong> project, which may
+    or may not be in the above list. Teams should make some reasonable
+    effort not to duplicate the same work as another team. Multiple
+    "solutions" to the same problem are accept (and perhaps expected) so
+    long as a different language/toolset is used.</p>
+    <div class="block">
+    	<ol>
+        <li>
+        	Team Upset <small><em>(perl)</em></small>
+        	<ul>
+            	<li>Dylan William Hardison</li>
+            	<li>Christian Brink</li>
+            	<li>Robert deSimone</li>
+        	</ul>
+        </li>
+        <li>
+        	Team PHP
+        	<ul>
+            	<li>Sam Likens</li>
+        	</ul>
+        </li>
+    </ol>
+</div>
+
+[% END %]

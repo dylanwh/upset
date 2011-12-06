@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-VERSION=${1:-0.04}
+VERSION=${1:-0.05}
 cd /srv/www/slug/Upset-$VERSION
 plackup -Mlocal::lib=/srv/www/slug/perl \
 	    -Ilib \
